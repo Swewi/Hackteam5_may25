@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Assistant{% endblock %}
+{% block content %}
+<h1>Welcome to the Assistant Page</h1>
+<p>Ask a question to get help.</p>
+<div id="gemini_response"></div>
+<input type="text" id="user_input" placeholder="Ask Gemini a question...">
+<button id="send_button">Send</button>
+<script>
+    const userInput = document.getElementById('user_input');
+    const sendButton = document.getElementById('send_button');
+    const geminiResponse = document.getElementById('gemini_response');
+
+    sendButton.addEventListener('click', () => {
+        const question = userInput.value;
+        fetch('/assistant/', {  //  Use the correct URL for your view
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: `question=${encodeURIComponent(question)}`
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Remove unwanted strings
+                const cleanedResponse = data.response.replace(/^```html/, '').replace(/```$/, '');
+                geminiResponse.innerHTML = cleanedResponse;
+                userInput.value = '';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                geminiResponse.textContent = 'An error occurred.';
+            });
+    });
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                if (cookie.startsWith(name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+</script>
+{% csrf_token %}
+{% endblock %}

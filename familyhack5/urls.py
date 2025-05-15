@@ -22,6 +22,7 @@ from django.conf import settings
 urlpatterns = [
     path('', home, name='home'),
     path('admin/', admin.site.urls),
+    path('', include('assistant.urls')),  #  Include the 'assistant' app URLs
 ]
 
 if settings.DEBUG:
