@@ -36,6 +36,11 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-hpl@h@mr8e^59y+p92qrxr^3&3
 # Determine environment (default to development)
 ENVIRONMENT = os.getenv('ENV', 'development')
 
+# GOOGLE CREDENTIALS
+GOOGLE_APPLICATION_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+if GOOGLE_APPLICATION_CREDENTIALS:
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = GOOGLE_APPLICATION_CREDENTIALS
+    
 # Load correct .env file
 if ENVIRONMENT == 'production':
     load_dotenv(os.path.join(BASE_DIR, '.env.production'))
