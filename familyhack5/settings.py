@@ -71,10 +71,10 @@ ALLOWED_HOSTS = (
 )
 
 # Extend for Gitpod in DEBUG mode
-if DEBUG:
-    gitpod_host = os.getenv('GITPOD_HOST')
-    if gitpod_host:
-        ALLOWED_HOSTS.append(gitpod_host)
+additional_hosts = os.getenv('ALLOWED_HOSTS', '').split(',')
+if additional_hosts and additional_hosts[0]:
+    ALLOWED_HOSTS.extend(additional_hosts)
+        
 
 # Application definition
 
