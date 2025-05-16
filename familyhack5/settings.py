@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'home',
     'assistant',
+    'team',
     
     # Baton admin app (must be after all apps)
     'baton.autodiscover',
