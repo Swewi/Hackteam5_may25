@@ -83,7 +83,11 @@ def assistant_view(request):
         # Get all interactions starting with the id stored in the session's first_interaction_id
         # This is to avoid loading all interactions at once, which can be slow
         # and inefficient. Instead, we load them in chunks as the user scrolls.
-        interactions = Interaction.objects.filter(id__gte=request.session['first_interaction_id']).order_by("timestamp")
+        # The interaction must also belong to the user in the request
+        interactions = Interaction.objects.filter(
+            id__gte=request.session['first_interaction_id'],
+            usr=request.user if request.user.is_authenticated else None
+        ).order_by("timestamp")
     # interactions = Interaction.objects.all().order_by("timestamp")
     return render(request, "assistant/assistant.html", {"history": interactions})
 

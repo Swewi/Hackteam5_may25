@@ -4,7 +4,7 @@
 <h1>Welcome to the Assistant Page</h1>
 <p>Ask a question to get help.</p>
 {% for interaction in history %}
-<div class="interaction" style="margin: 10px; padding: 10px; border: 1px solid #ccc;">
+<div class="interaction" style="text-align: center; margin: 10px; padding: 10px; border: 1px solid #ccc;">
     <p class="user-question">You: {{ interaction.question }}</p>
     <div class="gemini-response">AI Name: {{ interaction.answer|linebreaksbr }}</div>
     <small>{{ interaction.timestamp }}</small>
@@ -13,7 +13,7 @@
 <p>No previous interactions.</p>
 {% endfor %}
 <!-- <div id="gemini_response"></div> -->
-<div id="user-prompt">
+<div id="user-prompt" style="text-align: center;">
     <input type="text" id="user_input" placeholder="Ask Gemini a question...">
     <button id="send_button">Send</button>
 </div>
@@ -25,7 +25,7 @@
 
     sendButton.addEventListener('click', () => {
         const question = userInput.value;
-        // replace contents of user-prompt with a loading icon
+        // replace contents of user-prompt with a spinner icon
         const userPrompt = document.getElementById('user-prompt');
         userPrompt.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
         fetch('/assistant/', {  //  Use the correct URL for your view
@@ -38,11 +38,6 @@
         })
             .then(response => response.json())
             .then(data => {
-                // Remove unwanted strings
-                // const cleanedResponse = data.response.replace(/^```html/, '').replace(/```$/, '');
-                // geminiResponse.innerHTML = cleanedResponse;
-                // userInput.value = '';
-
                 // Refresh the page
                 location.reload();
             })
