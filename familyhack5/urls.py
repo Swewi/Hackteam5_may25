@@ -23,6 +23,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('', include('assistant.urls')),  #  Include the 'assistant' app URLs
+    path('accounts/', include('allauth.urls')),  # Add django-allauth URLs
 ]
 
 if settings.DEBUG:
