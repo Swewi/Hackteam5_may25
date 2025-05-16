@@ -3,6 +3,15 @@
 {% block content %}
 <h1>Welcome to the Assistant Page</h1>
 <p>Ask a question to get help.</p>
+{% for interaction in history %}
+        <div class="interaction">
+            <p class="user-question">You: {{ interaction.question }}</p>
+            <div class="gemini-response">AI Name: {{ interaction.answer|linebreaksbr }}</div>
+            <small>{{ interaction.timestamp }}</small>
+        </div>
+    {% empty %}
+        <p>No previous interactions.</p>
+{% endfor %}
 <div id="gemini_response"></div>
 <input type="text" id="user_input" placeholder="Ask Gemini a question...">
 <button id="send_button">Send</button>

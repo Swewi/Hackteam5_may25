@@ -2,6 +2,9 @@ import os
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.html import strip_tags
+import re
+from .models import Interaction
 import time
 
 # Try to import Google libraries, but handle gracefully if not installed
@@ -46,6 +49,7 @@ def get_gemini_response(question):
 def assistant_view(request):
     if request.method == "POST":
         user_question = request.POST.get("question")
+
         
         if GEMINI_AVAILABLE:
             question_preamp = (
@@ -54,13 +58,31 @@ def assistant_view(request):
             )
             prompt = question_preamp + user_question
             ai_response = get_gemini_response(prompt)
+
+            cleaned_ai_response = clean_ai_response(ai_response)
+            # Save the interaction to the database
+            Interaction.objects.create(
+                question=user_question,
+                answer=cleaned_ai_response,
+                timestamp=time.time(),
+                usr=request.user if request.user.is_authenticated else None,
+            )
         else:
             ai_response = "<div class='gemini-response'>Sorry, the assistant is not available right now. Please check the configuration.</div>"
             
         return JsonResponse({"response": ai_response})
-        
-    return render(request, "assistant/assistant.html")
+    interactions = Interaction.objects.all().order_by("timestamp")
+    return render(request, "assistant/assistant.html", {"history": interactions})
 
+def clean_ai_response(text):
+    # Remove triple backticks and optional language tags (like ```html)
+    text = re.sub(r'^```[a-z]*\n?', '', text)
+    text = re.sub(r'```$', '', text)
+
+    # Strip HTML tags, so only plain text remains
+    text = strip_tags(text)
+
+    return text.strip()
 
 def list_available_models():
     """Lists all available Gemini models (for debugging)."""
