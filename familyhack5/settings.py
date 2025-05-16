@@ -264,4 +264,22 @@ BATON = {
 # Django Import Export settings
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 
+# Add SITE_ID for django-allauth
 SITE_ID = 1
+
+# Add authentication backends for django-allauth
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# Add allauth settings
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+
+# Redirect to home page after login or signup
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/'
+
