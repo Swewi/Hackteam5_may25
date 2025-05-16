@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import os
-import json
 from pathlib import Path
 import cloudinary
 import cloudinary.uploader
@@ -37,24 +36,10 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-hpl@h@mr8e^59y+p92qrxr^3&3
 # Determine environment (default to development)
 ENVIRONMENT = os.getenv('ENV', 'development')
 
-# Google credentials handling for Heroku
-GOOGLE_CREDENTIALS_JSON = os.getenv('GOOGLE_CREDENTIALS_JSON')
+# GOOGLE CREDENTIALS
 GOOGLE_APPLICATION_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
-
-# Create the credentials file from environment variable if it exists
-if GOOGLE_CREDENTIALS_JSON and not GOOGLE_APPLICATION_CREDENTIALS:
-    # Create temp directory if it doesn't exist
-    temp_dir = os.path.join(BASE_DIR, 'temp')
-    os.makedirs(temp_dir, exist_ok=True)
-    
-    # Write the credentials to a temporary file
-    temp_credentials_path = os.path.join(temp_dir, 'google-credentials.json')
-    with open(temp_credentials_path, 'w') as credentials_file:
-        credentials_file.write(GOOGLE_CREDENTIALS_JSON)
-    
-    # Set the credentials path environment variable
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = temp_credentials_path
-    GOOGLE_APPLICATION_CREDENTIALS = temp_credentials_path
+if GOOGLE_APPLICATION_CREDENTIALS:
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = GOOGLE_APPLICATION_CREDENTIALS
     
 # Load correct .env file
 if ENVIRONMENT == 'production':
@@ -70,11 +55,15 @@ ALLOWED_HOSTS = (
     else os.getenv('ALLOWED_HOSTS', '').split(',')
 )
 
-# Extend for Gitpod in DEBUG mode
-additional_hosts = os.getenv('ALLOWED_HOSTS', '').split(',')
+additional_hosts = os.getenv('ADDITIONAL_HOSTS', '').split(',')
 if additional_hosts and additional_hosts[0]:
     ALLOWED_HOSTS.extend(additional_hosts)
-        
+
+# Extend for Gitpod in DEBUG mode
+if DEBUG:
+    gitpod_host = os.getenv('GITPOD_HOST')
+    if gitpod_host:
+        ALLOWED_HOSTS.append(gitpod_host)
 
 # Application definition
 
@@ -86,6 +75,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # Required for allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'cloudinary',
     'django_bootstrap5',
     'home',
@@ -96,13 +89,6 @@ INSTALLED_APPS = [
     'baton.autodiscover',
 ]
 
-# Add django-allauth apps to INSTALLED_APPS
-INSTALLED_APPS += [
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -110,12 +96,10 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-# Add AccountMiddleware for django-allauth
-MIDDLEWARE.insert(2, 'allauth.account.middleware.AccountMiddleware')
 
 # Add browser reload middleware for development
 if DEBUG:
@@ -261,9 +245,9 @@ BATON = {
     'SITE_HEADER': 'FamilyHack5 Admin',
     'SITE_TITLE': 'FamilyHack5',
     'INDEX_TITLE': 'Administration',
-    'SUPPORT_HREF': 'https://github.com/yourusername/familyhack5',
+    'SUPPORT_HREF': 'https://github.com/ljkkj7/familyhack5',
     'COPYRIGHT': 'copyright © 2025',
-    'POWERED_BY': '<a href="https://github.com/yourusername/familyhack5">FamilyHack5</a>',
+    'POWERED_BY': '<a href="https://github.com/ljkkj7/familyhack5">FamilyHack5</a>',
     'MENU': (
         { 'type': 'title', 'label': 'Main', 'apps': ('auth', ) },
         {
@@ -298,3 +282,4 @@ ACCOUNT_EMAIL_VERIFICATION = 'optional'
 # Redirect to home page after login or signup
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_REDIRECT_URL = '/'
+
