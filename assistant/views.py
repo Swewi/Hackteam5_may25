@@ -49,7 +49,7 @@ def get_gemini_response(question):
 def assistant_view(request):
     if request.method == "POST":
         user_question = request.POST.get("question")
-
+        
         
         if GEMINI_AVAILABLE:
             question_preamp = (
@@ -67,11 +67,24 @@ def assistant_view(request):
                 timestamp=time.time(),
                 usr=request.user if request.user.is_authenticated else None,
             )
+            # Store the id of the interaction that has just been created in the session
+            # If session['first_interaction_id'] == -1, it means that this is the first interaction
+            if request.session['first_interaction_id'] == -1:
+                request.session['first_interaction_id'] = Interaction.objects.last().id
         else:
             ai_response = "<div class='gemini-response'>Sorry, the assistant is not available right now. Please check the configuration.</div>"
             
         return JsonResponse({"response": ai_response})
-    interactions = Interaction.objects.all().order_by("timestamp")
+    
+    if request.session['first_interaction_id'] == -1:
+        # no interactions yet
+        interactions = Interaction.objects.none()
+    else:
+        # Get all interactions starting with the id stored in the session's first_interaction_id
+        # This is to avoid loading all interactions at once, which can be slow
+        # and inefficient. Instead, we load them in chunks as the user scrolls.
+        interactions = Interaction.objects.filter(id__gte=request.session['first_interaction_id']).order_by("timestamp")
+    # interactions = Interaction.objects.all().order_by("timestamp")
     return render(request, "assistant/assistant.html", {"history": interactions})
 
 def clean_ai_response(text):
