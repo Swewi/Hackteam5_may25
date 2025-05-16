@@ -95,6 +95,13 @@ INSTALLED_APPS = [
     'baton.autodiscover',
 ]
 
+# Add django-allauth apps to INSTALLED_APPS
+INSTALLED_APPS += [
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -105,6 +112,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Add AccountMiddleware for django-allauth
+MIDDLEWARE.insert(2, 'allauth.account.middleware.AccountMiddleware')
 
 # Add browser reload middleware for development
 if DEBUG:
@@ -268,3 +278,18 @@ BATON = {
 
 # Django Import Export settings
 IMPORT_EXPORT_USE_TRANSACTIONS = True
+
+# Add SITE_ID for django-allauth
+SITE_ID = 1
+
+# Add authentication backends for django-allauth
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# Add allauth settings
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
