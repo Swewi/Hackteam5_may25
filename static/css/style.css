@@ -1,0 +1,34 @@
+/* Body */
+body {
+    min-height: 100vh;
+    background-image: linear-gradient(to right bottom, #f8d6db, #efcad1, #e6bec7, #dcb2bd, #d3a6b4);
+}
+
+/* Navbar */
+.navbar {
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 2rem auto;
+    border-radius: 1rem;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+.navbar-custom {
+    background-color: #F0EDEC;
+}
+
+.navbar-custom .navbar-brand {
+    color: #753F4F;
+}
