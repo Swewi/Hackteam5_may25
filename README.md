@@ -1,4 +1,4 @@
-# Family Tech Helpdesk
+# The Digital Relatives
 [![HTML](https://img.shields.io/badge/Tech-HTML-orange)](#)
 [![CSS](https://img.shields.io/badge/Tech-CSS-blue)](#)
 [![JavaScript](https://img.shields.io/badge/Tech-JavaScript-yellow)](#)
