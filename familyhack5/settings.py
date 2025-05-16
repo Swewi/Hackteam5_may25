@@ -71,7 +71,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'django_bootstrap5',
     'home',
+    'assistant',
     
     # Baton admin app (must be after all apps)
     'baton.autodiscover',
