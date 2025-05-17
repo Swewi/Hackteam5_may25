@@ -12,7 +12,7 @@
         border: 1px solid #ccc;
         border-radius: 5px; */
         display:block;
-        text-align: left!important;
+        text-align: left;
         margin: 10px;
         padding: 10px;
     }
@@ -98,7 +98,7 @@
 <h1 style="margin-top: 60px;">Welcome to the Assistant Page</h1>
 <p>Ask a question to get help.</p>
 {% for interaction in history %}
-<div class="interaction" style="text-align: center; margin: 10px; padding: 10px; border: 1px solid #ccc;">
+<div class="interaction" >
     <div class="you-label">You</div>
     <div class="user-question">{{ interaction.question }}</div>
     <div class="assistant-label">Assistant</div>
