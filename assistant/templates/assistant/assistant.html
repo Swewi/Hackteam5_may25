@@ -81,6 +81,15 @@
         color: #11441d;  
         margin-left: 10px;
     }
+
+    #user-prompt {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        margin-right: 5px;
+        cursor: pointer;
+    }
 </style>
 <div
     style="position: fixed; top: 66px; left: 0; width: 100%; background-color: #f8f9fa; padding: 10px; border-bottom: 1px solid #ccc; z-index: 1000;">
@@ -100,9 +109,9 @@
 <p>No previous interactions.</p>
 {% endfor %}
 <!-- <div id="gemini_response"></div> -->
-<div id="user-prompt" style="text-align: center;">
-    <input type="text" id="user_input" placeholder="Ask Gemini a question..." style="width: 80%;">
-    <button id="send_button">Send</button>
+<div id="user-prompt">
+    <input type="text" id="user_input" placeholder="Ask Assistant a question..." style="min-width: 85%;">
+    <button id="send_button"><i class="fa fa-paper-plane"></i></button>
 </div>
 
 <div id="saveModal" class="modal"
