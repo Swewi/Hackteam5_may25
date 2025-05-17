@@ -2,5 +2,19 @@
 {% block title %}Notes{% endblock %}
 {% block content %}
 <h1>Notes</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>My Notes</h2>
+            <ul>
+                {% for note in notes %}
+                <li>{{ note.title }} - {{ note.content }}</li>
+                {% empty %}
+                <li>No notes available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>   
 {% csrf_token %}
 {% endblock %}
