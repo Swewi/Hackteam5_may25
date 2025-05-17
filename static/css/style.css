@@ -22,12 +22,6 @@ body {
     font-family: var(--main-font);
 }
 
-/* Navbar */
-a img {
-    width: 6rem;
-    height: auto;
-}
-
 /* Main */
 main {
     flex: 1 0 auto;
