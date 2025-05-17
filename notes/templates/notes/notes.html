@@ -109,25 +109,25 @@
         let yesBtn = document.getElementById('modalYesBtn');
         let noBtn = document.getElementById('modalNoBtn');
         let noteIdToDelete = null;
-        document.querySelectorAll('.delete-icon').forEach(function(icon) {
-            icon.addEventListener('click', function(e) {
+        document.querySelectorAll('.delete-icon').forEach(function (icon) {
+            icon.addEventListener('click', function (e) {
                 e.stopPropagation();
                 noteIdToDelete = this.querySelector('.delete-note-id').textContent.trim();
                 modal.style.display = 'block';
             });
         });
-        yesBtn.addEventListener('click', function() {
+        yesBtn.addEventListener('click', function () {
             if (noteIdToDelete) {
                 deleteNote(noteIdToDelete);
                 modal.style.display = 'none';
             }
         });
-        noBtn.addEventListener('click', function() {
+        noBtn.addEventListener('click', function () {
             modal.style.display = 'none';
             noteIdToDelete = null;
         });
         // Optional: close modal if clicking outside modal-content
-        modal.addEventListener('click', function(e) {
+        modal.addEventListener('click', function (e) {
             if (e.target === modal) {
                 modal.style.display = 'none';
                 noteIdToDelete = null;
@@ -151,3 +151,9 @@
 </script>
 {% csrf_token %}
 {% endblock %}
+{% block extra_js %}
+<!-- Font Awesome JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+{% endblock %}
+</body>
