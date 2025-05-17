@@ -1,0 +1,47 @@
+/* Team Page Specific Styles */
+.team-member-card {
+    transition: all 0.3s ease;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.team-member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.team-photo-placeholder {
+    font-size: 5rem;
+    color: #6c757d;
+}
+
+.team-card-body {
+    min-height: 180px;
+}
+
+/* Badge styling */
+.badge.bg-primary {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Button styling */
+.btn-outline-primary {
+    --bs-btn-color: #0d6efd;
+    --bs-btn-border-color: #0d6efd;
+    --bs-btn-hover-bg: #0d6efd;
+}
+
+.btn-outline-dark {
+    --bs-btn-color: #212529;
+    --bs-btn-border-color: #212529;
+    --bs-btn-hover-bg: #212529;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .team-card-body {
+        min-height: auto;
+    }
+}
