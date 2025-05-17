@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Notes{% endblock %}
+{% block content %}
+<div style="position: absolute; top: 100px; width: 100%;">
+    <h2>Note Details</h2>
+    <h1>{{ note.title }}</h1>
+    {% for interaction in interactions %}
+    <div class="interaction">
+        <p>{{ interaction.question }}</p>
+        <p>{{ interaction.answer }}</p>
+    </div>
+    {% empty %}
+    <p>No interactions available.</p>
+    {% endfor %}
+</div>
+{% csrf_token %}
+{% endblock %}
