@@ -57,11 +57,14 @@ def assistant_view(request):
         
         
         if GEMINI_AVAILABLE:
-            question_preamp = (
-                "The user asking the question is a 5-year-old child. Please send the response in html format inside a div element with class='gemini-response'. "
-                "Here is what the user asked: "
+            question_preamble = (
+                "The user asking the question is not technically inclined. If it is a technical question, then format the answer in a way that is easy to understand. "
+                "And if answering the question rerquires several steps, then break it down into smaller steps. "
+                "And give the user step-by-step instructions. "
+                "If the question is not technical, then answer it in a friendly and helpful manner. "
+                "Here is what the user said: "
             )
-            prompt = question_preamp + user_question
+            prompt = question_preamble + user_question
             ai_response = get_gemini_response(prompt)
 
             cleaned_ai_response = clean_ai_response(ai_response)
@@ -97,7 +100,7 @@ def assistant_view(request):
             id__gte=request.session['first_interaction_id'],
             usr=request.user if request.user.is_authenticated else None
         ).order_by("timestamp")
-    # interactions = Interaction.objects.all().order_by("timestamp")
+    
     return render(request, "assistant/assistant.html", {"history": interactions})
 
 def clean_ai_response(text):
