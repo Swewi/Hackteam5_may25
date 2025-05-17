@@ -23,7 +23,7 @@ body {
 }
 
 /* Navbar */
-a .logo {
+a img {
     width: 6rem;
     height: auto;
 }
@@ -42,13 +42,11 @@ main {
 footer {
     background-color: var(--background);
     flex-shrink: 0;
-    width: 100%;
-    height: 4rem;
-    padding: 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+}
+
+#logo img {
+    width: auto;
+    max-height: 3rem;
 }
 
 .social-icons, .footer-text {
@@ -75,10 +73,9 @@ footer a {
 
 @media screen and (min-width: 992px) {
 
-    footer {
+    /* footer {
         height: 6rem;
-        padding: .8rem;
-    }
+    } */
 
     .footer-text {
         height: 2.5rem;
