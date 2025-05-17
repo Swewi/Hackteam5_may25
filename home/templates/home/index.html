@@ -5,9 +5,79 @@
 {% block title %}Home - FamilyHack5{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>Welcome to UncleTech!</h1>
-    <p>Your one-stop solution for technical queries and questions about your tech.</p>
-    
-</div>
+<div class="container-md py-4">
+    <!-- Hero Section with image outside background -->
+    <div class="row align-items-center padding-1 g-0">
+      <!-- Image column -->
+      <div class="col-md-4 text-end px-0">
+        <img src="{% static 'images/robot.png' %}" class="img-fluid w-75 mirror" alt="Robot" />
+      </div>
+  
+      <!-- Text column with background -->
+      <div class="col-md-8 p-0">
+        <div class="text-background rounded-5 padding-2">
+          <h3 class="text-center">Welcome to uncleTech!</h3>
+          <p class="text-center">I am here to help you.</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- About uncleTech -->
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="text-background rounded-5 padding-2 text-start">
+            <h3 class="text-start">Meet uncleTech</h3>
+          <p>
+            Meet Uncle Tech — Your Friendly Tech Helper!  
+            Struggling with the Wi-Fi? Can't find the settings on your phone?  
+            Say hello to Uncle Tech, the smart and simple AI designed for everyone.  
+            Powered by Google's Gemini AI, Uncle Tech answers everyday tech questions in plain, easy-to-follow language — no jargon, no stress.
+          </p>
+          <p>
+            Whether you need help connecting to the internet, using apps, or just figuring out your device,  
+            Uncle Tech is always ready with calm, friendly advice.  
+            It's like having a patient family member who's always happy to help — anytime you need it.
+          </p>
+          <p>
+            Technology shouldn't be scary. With Uncle Tech, it's simple.
+          </p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- How to Sign Up -->
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="text-background rounded-5 padding-2 text-start">
+          <h3 class="text-center">Let's Get You Signed Up</h3>
+          <p>
+            Joining Uncle Tech is easy as pie! Just click Sign Up at the top of the page, and fill in your name and email — that's it!  
+            No tricky steps or confusing forms.
+          </p>
+          <br />
+          <h3 class="text-center">Why Sign Up?</h3>
+          <br />
+          <p class="text-start fs-4">Get Help Anytime</p>
+          <p>
+            Once you're signed in, you can ask Uncle Tech all your questions — like how to fix the Wi-Fi or use your phone — and get simple, friendly answers.
+          </p>
+  
+          <p class="text-start fs-4">Keep Track</p>
+          <p>
+            We'll remember the questions you ask, so you can come back and check them again later. No need to write anything down.
+          </p>
+  
+          <p class="text-start fs-4">Made for You</p>
+          <p>
+            Uncle Tech is built especially for folks who didn't grow up with all this new tech. We keep things clear, gentle, and stress-free.
+          </p>
+  
+          <p class="text-start fs-4">Safe & Private</p>
+          <p>
+            Your information stays just between us. No sharing, no spam — promise!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
