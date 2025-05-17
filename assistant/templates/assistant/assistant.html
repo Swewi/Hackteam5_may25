@@ -21,6 +21,21 @@
     <button id="send_button">Send</button>
 </div>
 
+<div id="saveModal" class="modal" style="display: none; position: fixed; z-index: 1050; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+    <div class="modal-content" style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 50%;">
+        <span id="closeModal" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+        <form id="saveForm" action="/assistant/save-conversation/" method="POST">
+            {% csrf_token %}
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" style="width: 100%; margin-bottom: 10px;">
+            <div style="text-align: right;">
+                <button type="button" id="cancelButton">Cancel</button>
+                <button type="button" id="okButton">OK</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script>
     const userInput = document.getElementById('user_input');
     const sendButton = document.getElementById('send_button');
@@ -70,6 +85,39 @@
         }
         return cookieValue;
     }
+
+    const saveButton = document.getElementById('save_conversation');
+    const modal = document.getElementById('saveModal');
+    const closeModal = document.getElementById('closeModal');
+    const cancelButton = document.getElementById('cancelButton');
+    const okButton = document.getElementById('okButton');
+
+    saveButton.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
+
+    closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    cancelButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    okButton.addEventListener('click', () => {
+        const titleField = document.getElementById('title');
+        if (titleField.value.trim() === '') {
+            alert('Title cannot be empty.');
+            return;
+        }
+        document.getElementById('saveForm').submit();
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
 </script>
 {% csrf_token %}
 {% endblock %}
