@@ -47,16 +47,24 @@ def get_gemini_response(question):
 
 @csrf_exempt
 def assistant_view(request):
+    """Handles the assistant view and user interactions."""
+    # If the user is not authenticated, redirect to the login page
+    if not request.user.is_authenticated:
+        return HttpResponse("You must be logged in to use this feature.", status=403)
+    
     if request.method == "POST":
         user_question = request.POST.get("question")
-
+        
         
         if GEMINI_AVAILABLE:
-            question_preamp = (
-                "The user asking the question is a 5-year-old child. Please send the response in html format inside a div element with class='gemini-response'. "
-                "Here is what the user asked: "
+            question_preamble = (
+                "The user asking the question is not technically inclined. If it is a technical question, then format the answer in a way that is easy to understand. "
+                "And if answering the question rerquires several steps, then break it down into smaller steps. "
+                "And give the user step-by-step instructions. "
+                "If the question is not technical, then answer it in a friendly and helpful manner. "
+                "Here is what the user said: "
             )
-            prompt = question_preamp + user_question
+            prompt = question_preamble + user_question
             ai_response = get_gemini_response(prompt)
 
             cleaned_ai_response = clean_ai_response(ai_response)
@@ -65,13 +73,34 @@ def assistant_view(request):
                 question=user_question,
                 answer=cleaned_ai_response,
                 timestamp=time.time(),
-                usr=request.user if request.user.is_authenticated else None,
+                usr=request.user,
             )
+            # Store the id of the interaction that has just been created in the session
+            # If session['first_interaction_id'] == -1, it means that this is the first interaction
+            if request.session['first_interaction_id'] == -1:
+                # store the last interaction that belongs to the user in the request
+                request.session['first_interaction_id'] = Interaction.objects.filter(
+                    usr=request.user 
+                ).order_by("timestamp").last().id
+                print("First interaction id set to:", request.session['first_interaction_id'])
         else:
             ai_response = "<div class='gemini-response'>Sorry, the assistant is not available right now. Please check the configuration.</div>"
             
         return JsonResponse({"response": ai_response})
-    interactions = Interaction.objects.all().order_by("timestamp")
+    
+    if request.session['first_interaction_id'] == -1:
+        # no interactions yet
+        interactions = Interaction.objects.none()
+    else:
+        # Get all interactions starting with the id stored in the session's first_interaction_id
+        # This is to avoid loading all interactions at once, which can be slow
+        # and inefficient. Instead, we load them in chunks as the user scrolls.
+        # The interaction must also belong to the user in the request
+        interactions = Interaction.objects.filter(
+            id__gte=request.session['first_interaction_id'],
+            usr=request.user if request.user.is_authenticated else None
+        ).order_by("timestamp")
+    
     return render(request, "assistant/assistant.html", {"history": interactions})
 
 def clean_ai_response(text):

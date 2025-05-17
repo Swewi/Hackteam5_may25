@@ -4,24 +4,30 @@
 <h1>Welcome to the Assistant Page</h1>
 <p>Ask a question to get help.</p>
 {% for interaction in history %}
-        <div class="interaction">
-            <p class="user-question">You: {{ interaction.question }}</p>
-            <div class="gemini-response">AI Name: {{ interaction.answer|linebreaksbr }}</div>
-            <small>{{ interaction.timestamp }}</small>
-        </div>
-    {% empty %}
-        <p>No previous interactions.</p>
+<div class="interaction" style="text-align: center; margin: 10px; padding: 10px; border: 1px solid #ccc;">
+    <p class="user-question">You: {{ interaction.question }}</p>
+    <div class="gemini-response">AI Name: {{ interaction.answer|linebreaksbr }}</div>
+    <small>{{ interaction.timestamp }}</small>
+</div>
+{% empty %}
+<p>No previous interactions.</p>
 {% endfor %}
-<div id="gemini_response"></div>
-<input type="text" id="user_input" placeholder="Ask Gemini a question...">
-<button id="send_button">Send</button>
+<!-- <div id="gemini_response"></div> -->
+<div id="user-prompt" style="text-align: center;">
+    <input type="text" id="user_input" placeholder="Ask Gemini a question..." style="width: 80%;">
+    <button id="send_button">Send</button>
+</div>
+
 <script>
     const userInput = document.getElementById('user_input');
     const sendButton = document.getElementById('send_button');
-    const geminiResponse = document.getElementById('gemini_response');
+    // const geminiResponse = document.getElementById('gemini_response');
 
     sendButton.addEventListener('click', () => {
         const question = userInput.value;
+        // replace contents of user-prompt with a spinner icon
+        const userPrompt = document.getElementById('user-prompt');
+        userPrompt.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
         fetch('/assistant/', {  //  Use the correct URL for your view
             method: 'POST',
             headers: {
@@ -32,15 +38,19 @@
         })
             .then(response => response.json())
             .then(data => {
-                // Remove unwanted strings
-                const cleanedResponse = data.response.replace(/^```html/, '').replace(/```$/, '');
-                geminiResponse.innerHTML = cleanedResponse;
-                userInput.value = '';
+                // Refresh the page
+                location.reload();
             })
             .catch(error => {
                 console.error('Error:', error);
                 geminiResponse.textContent = 'An error occurred.';
             });
+    });
+
+    userInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            sendButton.click();
+        }
     });
 
     function getCookie(name) {
