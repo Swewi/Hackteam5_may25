@@ -83,20 +83,20 @@
     <footer class="footer mt-auto dark-bg p-0 pt-1">
         <div class="row footer-row me-0">
             <div class="col-lg-4 text-center quick-links-container">
-                <p class="footer-title mb-1 fs-6">Quick Links</p>
+                <p class="footer-title mb-1 fs-4">Quick Links</p>
                 <div class="quick-links-content d-flex flex-column">
-                    <a href="{% url 'home' %}" class="mb-1 fs-5" rel="noopener" aria-label="Home page">Home</a>
-                    <a href="{% url 'team:team' %}" class="mb-1 fs-5" rel="noopener" aria-label="About page">Meet the
+                    <a href="{% url 'home' %}" class="mb-1 fs-6" rel="noopener" aria-label="Home page">Home</a>
+                    <a href="{% url 'team:team' %}" class="mb-1 fs-6" rel="noopener" aria-label="About page">Meet the
                         Team</a>
                 </div>
             </div>
-            <div class="col-lg-4 img-fluid text-center" id="logo">
+            <div class="col-lg-4 d-flex justify-content-center align-items-center" id="logo">
                 <a href="/" target="_blank" rel="noopener" aria-label="Opens a page for the site">
-                    <img src="{% static 'images/logo.png' %}" class="w-25" alt="uncleTech logo" />
+                    <img src="{% static 'images/logo.png' %}" class="img-fluid" alt="uncleTech logo" />
                 </a>
             </div>
-            <div class="col-lg-4 github-container text-center text-end">
-                <p class="footer-title mb-3">Find Us on GitHub</p>
+            <div class="col-lg-4 github-container text-center">
+                <p class="footer-title fs-4 mb-3">Find Us on GitHub</p>
                 <div class="github-link">
                     <a href="https://github.com/Swewi/Hackteam5_may25" aria-label="Opens GitHub in a new tab"
                         target="_blank" rel="noopener" class="github-btn">
