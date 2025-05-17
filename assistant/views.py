@@ -47,6 +47,11 @@ def get_gemini_response(question):
 
 @csrf_exempt
 def assistant_view(request):
+    """Handles the assistant view and user interactions."""
+    # If the user is not authenticated, redirect to the login page
+    if not request.user.is_authenticated:
+        return HttpResponse("You must be logged in to use this feature.", status=403)
+    
     if request.method == "POST":
         user_question = request.POST.get("question")
         
@@ -65,12 +70,16 @@ def assistant_view(request):
                 question=user_question,
                 answer=cleaned_ai_response,
                 timestamp=time.time(),
-                usr=request.user if request.user.is_authenticated else None,
+                usr=request.user,
             )
             # Store the id of the interaction that has just been created in the session
             # If session['first_interaction_id'] == -1, it means that this is the first interaction
             if request.session['first_interaction_id'] == -1:
-                request.session['first_interaction_id'] = Interaction.objects.last().id
+                # store the last interaction that belongs to the user in the request
+                request.session['first_interaction_id'] = Interaction.objects.filter(
+                    usr=request.user 
+                ).order_by("timestamp").last().id
+                print("First interaction id set to:", request.session['first_interaction_id'])
         else:
             ai_response = "<div class='gemini-response'>Sorry, the assistant is not available right now. Please check the configuration.</div>"
             

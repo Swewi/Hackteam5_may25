@@ -14,7 +14,7 @@
 {% endfor %}
 <!-- <div id="gemini_response"></div> -->
 <div id="user-prompt" style="text-align: center;">
-    <input type="text" id="user_input" placeholder="Ask Gemini a question...">
+    <input type="text" id="user_input" placeholder="Ask Gemini a question..." style="width: 80%;">
     <button id="send_button">Send</button>
 </div>
 
@@ -45,6 +45,12 @@
                 console.error('Error:', error);
                 geminiResponse.textContent = 'An error occurred.';
             });
+    });
+
+    userInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            sendButton.click();
+        }
     });
 
     function getCookie(name) {
