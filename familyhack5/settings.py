@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import os
+import json
 from pathlib import Path
 import cloudinary
 import cloudinary.uploader
@@ -36,10 +37,24 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-hpl@h@mr8e^59y+p92qrxr^3&3
 # Determine environment (default to development)
 ENVIRONMENT = os.getenv('ENV', 'development')
 
-# GOOGLE CREDENTIALS
+# Google credentials handling for Heroku
+GOOGLE_CREDENTIALS_JSON = os.getenv('GOOGLE_CREDENTIALS_JSON')
 GOOGLE_APPLICATION_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
-if GOOGLE_APPLICATION_CREDENTIALS:
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = GOOGLE_APPLICATION_CREDENTIALS
+
+# Create the credentials file from environment variable if it exists
+if GOOGLE_CREDENTIALS_JSON and not GOOGLE_APPLICATION_CREDENTIALS:
+    # Create temp directory if it doesn't exist
+    temp_dir = os.path.join(BASE_DIR, 'temp')
+    os.makedirs(temp_dir, exist_ok=True)
+
+    # Write the credentials to a temporary file
+    temp_credentials_path = os.path.join(temp_dir, 'google-credentials.json')
+    with open(temp_credentials_path, 'w') as credentials_file:
+        credentials_file.write(GOOGLE_CREDENTIALS_JSON)
+
+    # Set the credentials path environment variable
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = temp_credentials_path
+    GOOGLE_APPLICATION_CREDENTIALS = temp_credentials_path
     
 # Load correct .env file
 if ENVIRONMENT == 'production':
@@ -60,10 +75,9 @@ if additional_hosts and additional_hosts[0]:
     ALLOWED_HOSTS.extend(additional_hosts)
 
 # Extend for Gitpod in DEBUG mode
-if DEBUG:
-    gitpod_host = os.getenv('GITPOD_HOST')
-    if gitpod_host:
-        ALLOWED_HOSTS.append(gitpod_host)
+additional_hosts = os.getenv('ALLOWED_HOSTS', '').split(',')
+if additional_hosts and additional_hosts[0]:
+    ALLOWED_HOSTS.extend(additional_hosts)
 
 # Application definition
 
@@ -153,7 +167,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'familyhack5.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -282,4 +295,3 @@ ACCOUNT_SIGNUP_FIELDS = ['username*', 'password1*', 'password2*']
 # Redirect to home page after login or signup
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_REDIRECT_URL = '/'
-
