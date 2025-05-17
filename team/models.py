@@ -38,3 +38,4 @@ class TeamMember(models.Model):
         if self.github_url:
             return self.github_url.split('/')[-1]
         return ""
+    

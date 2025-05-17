@@ -39,7 +39,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/"><img src="{% static 'images/logo.png' %}" class="logo"
+            <a class="navbar-brand" id="logo" href="/"><img src="{% static 'images/logo.png' %}"
                     alt="uncleTech logo" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,27 +48,31 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/team/">Team</a>
+                        <a class="nav-link" href="{% url 'team:team' %}">Team</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/assistant/">Assistant</a>
+                        <a class="nav-link" href="{% url 'assistant' %}">Assistant</a>
                     </li>
                     <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+
                         <a class="nav-link" href="/notes/">Notes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/accounts/logout/">Logout</a>
+
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/accounts/login/">Login</a>
+                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/accounts/signup/">Signup</a>
+                        <a class="nav-link" href="{% url 'account_signup' %}">Signup</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -81,11 +85,36 @@
         {% endblock %}
     </main>
 
-    <footer>
-        <a href="/" target="_blank" rel="noopener noreferrer" aria-label="Linked - Openes in a new">
-            <p class="footer-text hide">uncleTech</p>
-        </a>
-        <p class="footer-text hide">&copy; 2025 FamilyHack5</p>
+    <footer class="footer mt-auto dark-bg p-0 pt-1">
+        <div class="row footer-row me-0">
+            <div class="col-lg-4 text-center quick-links-container">
+                <h3 class="footer-title mb-1">Quick Links</h3>
+                <div class="quick-links-content d-flex flex-column">
+                    <a href="{% url 'home' %}" class="mb-1" rel="noopener" aria-label="Home page">Home</a>
+                    <a href="{% url 'team:team' %}" class="mb-1" rel="noopener" aria-label="About page">Meet the
+                        Team</a>
+                </div>
+            </div>
+            <div class="col-lg-4 img-fluid text-center" id="logo">
+                <a href="/" target="_blank" rel="noopener" aria-label="Opens a page for the site">
+                    <img src="{% static 'images/logo.png' %}" alt="uncleTech logo" />
+                </a>
+            </div>
+            <div class="col-lg-4 github-container text-center text-end">
+                <h3 class="footer-title mb-3">Find Us on GitHub</h3>
+                <div class="github-link">
+                    <a href="https://github.com/Swewi/Hackteam5_may25" aria-label="Opens GitHub in a new tab" target="_blank" rel="noopener" class="github-btn">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="m-0">
+            <p class="copyright m-0 p-1 text-center border-top">
+                {% block copyright %} @ The Digital Relatives - Team5 May 2025 Code Institute
+                Hackathon {% endblock %}
+            </p>
+        </div>
     </footer>
 
     <!-- Bootstrap JS Bundle with Popper -->

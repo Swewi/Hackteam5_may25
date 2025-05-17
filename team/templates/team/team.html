@@ -8,8 +8,8 @@
     <!-- Page Header -->
     <div class="row mb-5 text-center">
         <div class="col-12">
-            <h1 class="display-4 fw-bold mb-3">Our Team</h1>
-            <p class="lead text-muted">The talented developers behind FamilyHack5</p>
+            <h1 class="display-4 fw-bold mb-3">The Digital Relatives</h1>
+            <p class="lead text-muted">We are the talented developers behind our assistant uncleTech</p>
         </div>
     </div>
 
@@ -20,33 +20,32 @@
             <div class="card h-100 border-0 shadow-sm team-member-card">
                 <!-- Photo or placeholder -->
                 {% if member.photo %}
-                <img src="{{ member.photo.url }}" class="card-img-top" alt="{{ member.name }}" style="height: 250px; object-fit: cover;">
+                <img src="{{ member.photo.url }}" class="card-img-top" alt="{{ member.name }}"
+                    style="height: 250px; object-fit: cover;">
                 {% else %}
                 <div class="d-flex align-items-center justify-content-center bg-light py-5">
                     <i class="fas fa-user-circle team-photo-placeholder"></i>
                 </div>
                 {% endif %}
-                
+
                 <!-- Member Info -->
                 <div class="card-body team-card-body">
                     <h3 class="card-title fw-bold">{{ member.name }}</h3>
                     <span class="badge bg-primary mb-2">{{ member.role }}</span>
                     <p class="card-text text-muted">{{ member.bio }}</p>
                 </div>
-                
+
                 <!-- Social Links -->
                 <div class="card-footer bg-white border-0 pb-3">
                     <div class="d-flex justify-content-center gap-2">
-                        <a href="{{ member.github_url }}" 
-                           class="btn btn-sm btn-outline-dark rounded-pill px-3"
-                           target="_blank">
+                        <a href="{{ member.github_url }}" class="btn btn-sm btn-outline-dark rounded-pill px-3"
+                            target="_blank">
                             <i class="fab fa-github me-1"></i> GitHub
                         </a>
-                        
+
                         {% if member.linkedin_url %}
-                        <a href="{{ member.linkedin_url }}" 
-                           class="btn btn-sm btn-outline-primary rounded-pill px-3"
-                           target="_blank">
+                        <a href="{{ member.linkedin_url }}" class="btn btn-sm btn-outline-primary rounded-pill px-3"
+                            target="_blank">
                             <i class="fab fa-linkedin-in me-1"></i> LinkedIn
                         </a>
                         {% endif %}
