@@ -97,6 +97,7 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'home',
     'assistant',
+    'notes',
     'team',
     
     # Baton admin app (must be after all apps)
