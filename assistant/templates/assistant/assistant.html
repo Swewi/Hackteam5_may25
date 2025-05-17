@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Assistant{% endblock %}
 {% block content %}
-<div style="position: fixed; top: 56px; left: 0; width: 100%; background-color: #f8f9fa; padding: 10px; border-bottom: 1px solid #ccc; z-index: 1000;">
+<div style="position: fixed; top: 66px; left: 0; width: 100%; background-color: #f8f9fa; padding: 10px; border-bottom: 1px solid #ccc; z-index: 1000;">
     <button id="save_conversation" style="float: right;">Save conversation</button>
 </div>
 <h1 style="margin-top: 60px;">Welcome to the Assistant Page</h1>
@@ -26,6 +26,7 @@
         <span id="closeModal" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" style="width: 100%; margin-bottom: 10px;">
+        <div id="validation-message" style="color: red; "></div>
         <div style="text-align: right;">
             <button type="button" id="cancelButton">Cancel</button>
             <button type="button" id="okButton">OK</button>
@@ -88,8 +89,10 @@
 
     okButton.addEventListener('click', () => {
         const titleField = document.getElementById('title');
+        const validationMessage = document.getElementById('validation-message');
+        
         if (titleField.value.trim() === '') {
-            alert('Title cannot be empty.');
+            validationMessage.innerHTML ='Title cannot be empty!';
             return;
         }
 
@@ -106,7 +109,7 @@
         .then(data => {
             // If data contains status=='success', show success message
             if (data.status === 'success') {
-                alert('Conversation saved successfully!');
+                showMessage('Conversation saved successfully!');
             } else {
                 alert('Failed to save conversation.');
             }            
@@ -118,11 +121,42 @@
         });
     });
 
+    // Clear validation message when user starts typing in the title input
+    const titleInput = document.getElementById('title');
+    const validationMessage = document.getElementById('validation-message');
+    titleInput.addEventListener('keyup', function() {
+        if (validationMessage.innerHTML !== '') {
+            validationMessage.innerHTML = '';
+        }
+    });
+
+    // Close the modal when clicking outside of it
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
             modal.style.display = 'none';
         }
     });
+
+    // Function for inserting a div with a message at the top of the page
+    // The div gets removed after 5 seconds
+    function showMessage(message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.textContent = message;
+        messageDiv.style.position = 'fixed';
+        messageDiv.style.top = '10px';
+        messageDiv.style.left = '50%';
+        messageDiv.style.transform = 'translateX(-50%)';
+        messageDiv.style.backgroundColor = '#f0f0f0';
+        messageDiv.style.padding = '10px';
+        messageDiv.style.borderRadius = '5px';
+        messageDiv.style.zIndex = '1001';
+        messageDiv.style.color = 'green';
+        document.body.appendChild(messageDiv);
+        
+        setTimeout(() => {
+            document.body.removeChild(messageDiv);
+        }, 5000);
+    }
 
     function getCookie(name) {
         let cookieValue = null;

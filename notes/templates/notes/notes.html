@@ -15,9 +15,11 @@
         height: 150px;
         background: #f0f0f0;
         border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: block;
+        text-align: center;
+        /* display: flex;
+        align-items: flex-start;
+        justify-content: center; */
         font-weight: bold;
         font-size: 14px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
@@ -28,14 +30,61 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         background: #e0e7ff;
     }
+
+    /* delete icon - make it appear in the top right corner of the note-tile by taking up the entire row */
+    .delete-icon {
+        cursor: pointer;
+        /* take up the entire row */
+        position: relative;
+        margin-left: 80%;
+        top: 5px;
+        right: 5px;
+        color: #ff0000;
+        font-size: 16px;
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+        background: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 8px;
+        width: 300px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
 </style>
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <p>Do you really want to delete the note?</p>
+        <div style="margin-top: 20px;">
+            <button id="modalYesBtn" style="margin-right: 20px;">Yes</button>
+            <button id="modalNoBtn">No</button>
+        </div>
+    </div>
+</div>
 <div style="position: absolute; top: 100px; width: 100%;">
     <h2>My Notes</h2>
     <div class="notes-tiles-container">
         {% for note in notes %}
         <div class="note-tile">
+            <div class="delete-icon">
+                <i class="fas fa-trash"></i>
+                <span class="delete-note-id" style="display:none;">{{ note.id }}</span>
+            </div>
             <span class="note-id" style="display:none;">{{ note.id }}</span>
-            <span>{{ note.title }}</span>
+            <div>{{ note.title }}</div>
         </div>
         {% empty %}
         <p>No notes available.</p>
@@ -43,16 +92,68 @@
     </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.note-tile').forEach(function(tile) {
-            tile.addEventListener('click', function() {
+    document.addEventListener('DOMContentLoaded', function () {
+        // Note tile click for view
+        document.querySelectorAll('.note-tile').forEach(function (tile) {
+            tile.addEventListener('click', function (e) {
+                // Prevent click if delete icon was clicked
+                if (e.target.closest('.delete-icon')) return;
                 var noteId = this.querySelector('.note-id').textContent.trim();
                 if (noteId) {
                     window.location.href = '/notes/view/' + noteId + '/';
                 }
             });
         });
+        // Delete icon click for modal
+        let modal = document.getElementById('deleteModal');
+        let yesBtn = document.getElementById('modalYesBtn');
+        let noBtn = document.getElementById('modalNoBtn');
+        let noteIdToDelete = null;
+        document.querySelectorAll('.delete-icon').forEach(function (icon) {
+            icon.addEventListener('click', function (e) {
+                e.stopPropagation();
+                noteIdToDelete = this.querySelector('.delete-note-id').textContent.trim();
+                modal.style.display = 'block';
+            });
+        });
+        yesBtn.addEventListener('click', function () {
+            if (noteIdToDelete) {
+                deleteNote(noteIdToDelete);
+                modal.style.display = 'none';
+            }
+        });
+        noBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+            noteIdToDelete = null;
+        });
+        // Optional: close modal if clicking outside modal-content
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                noteIdToDelete = null;
+            }
+        });
     });
+    function deleteNote(noteId) {
+        fetch('/notes/delete/' + noteId + '/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        }).then(function (response) {
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                alert('Failed to delete the note.');
+            }
+        });
+    }
 </script>
 {% csrf_token %}
 {% endblock %}
+{% block extra_js %}
+<!-- Font Awesome JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+{% endblock %}
+</body>

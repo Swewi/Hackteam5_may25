@@ -24,3 +24,17 @@ def view_note(request, note_id):
     ).order_by('timestamp')
 
     return render(request, 'notes/view_note.html', {'note': note, 'interactions': interactions})
+
+# Delete a note
+def delete_note(request, note_id):
+    """Deletes a note."""
+    # Get the note object
+    note = Note.objects.get(id=note_id)
+    # Check if the note belongs to the user
+    if note.user != request.user:
+        return render(request, 'notes/notes.html', {'error': 'You do not have permission to delete this note.'})
+    # Delete the note
+    note.delete()
+
+    # Redirect to the notes view
+    return render(request, 'notes/notes.html', {'message': 'Note deleted successfully.'})
