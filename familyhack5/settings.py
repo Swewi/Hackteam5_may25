@@ -46,12 +46,12 @@ if GOOGLE_CREDENTIALS_JSON and not GOOGLE_APPLICATION_CREDENTIALS:
     # Create temp directory if it doesn't exist
     temp_dir = os.path.join(BASE_DIR, 'temp')
     os.makedirs(temp_dir, exist_ok=True)
-    
+
     # Write the credentials to a temporary file
     temp_credentials_path = os.path.join(temp_dir, 'google-credentials.json')
     with open(temp_credentials_path, 'w') as credentials_file:
         credentials_file.write(GOOGLE_CREDENTIALS_JSON)
-    
+
     # Set the credentials path environment variable
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = temp_credentials_path
     GOOGLE_APPLICATION_CREDENTIALS = temp_credentials_path
@@ -70,11 +70,14 @@ ALLOWED_HOSTS = (
     else os.getenv('ALLOWED_HOSTS', '').split(',')
 )
 
+additional_hosts = os.getenv('ADDITIONAL_HOSTS', '').split(',')
+if additional_hosts and additional_hosts[0]:
+    ALLOWED_HOSTS.extend(additional_hosts)
+
 # Extend for Gitpod in DEBUG mode
 additional_hosts = os.getenv('ALLOWED_HOSTS', '').split(',')
 if additional_hosts and additional_hosts[0]:
     ALLOWED_HOSTS.extend(additional_hosts)
-        
 
 # Application definition
 
@@ -86,6 +89,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # Required for allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'cloudinary',
     'django_bootstrap5',
     'home',
@@ -96,13 +103,6 @@ INSTALLED_APPS = [
     'baton.autodiscover',
 ]
 
-# Add django-allauth apps to INSTALLED_APPS
-INSTALLED_APPS += [
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -110,12 +110,11 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'familyhack5.middleware.FirstInteractionIDMiddleware',
 ]
-
-# Add AccountMiddleware for django-allauth
-MIDDLEWARE.insert(2, 'allauth.account.middleware.AccountMiddleware')
 
 # Add browser reload middleware for development
 if DEBUG:
@@ -261,9 +260,9 @@ BATON = {
     'SITE_HEADER': 'FamilyHack5 Admin',
     'SITE_TITLE': 'FamilyHack5',
     'INDEX_TITLE': 'Administration',
-    'SUPPORT_HREF': 'https://github.com/yourusername/familyhack5',
+    'SUPPORT_HREF': 'https://github.com/ljkkj7/familyhack5',
     'COPYRIGHT': 'copyright © 2025',
-    'POWERED_BY': '<a href="https://github.com/yourusername/familyhack5">FamilyHack5</a>',
+    'POWERED_BY': '<a href="https://github.com/ljkkj7/familyhack5">FamilyHack5</a>',
     'MENU': (
         { 'type': 'title', 'label': 'Main', 'apps': ('auth', ) },
         {
@@ -289,8 +288,10 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-# Add allauth settings
-ACCOUNT_EMAIL_REQUIRED = False
-ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+# Update deprecated settings for django-allauth
+ACCOUNT_LOGIN_METHODS = {'username'}
+ACCOUNT_SIGNUP_FIELDS = ['username*', 'password1*', 'password2*']
+
+# Redirect to home page after login or signup
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/'
