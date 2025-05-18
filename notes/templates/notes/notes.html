@@ -76,6 +76,10 @@
 </div>
 <div style="position: absolute; top: 100px; width: 100%;">
     <h2>My Notes</h2>
+    <form method="get" style="margin-bottom: 20px; text-align: center;">
+        <input type="text" name="q" placeholder="Filter notes by title, question, or answer..." value="{{ query|default:'' }}" style="width: 300px; padding: 6px; border-radius: 6px; border: 1px solid #ccc;">
+        <button type="submit" style="padding: 6px 16px; border-radius: 6px; border: none; background: #007bff; color: #fff;">Filter</button>
+    </form>
     <div class="notes-tiles-container">
         {% for note in notes %}
         <div class="note-tile">
