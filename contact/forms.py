@@ -24,3 +24,4 @@ class ContactForm(forms.Form):
             'aria-label': 'Message'
         })
     )
+    

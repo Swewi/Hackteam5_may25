@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="{% static 'css/account/login.css' %}">
     <link rel="stylesheet" href="{% static 'css/account/signup.css' %}">
     <link rel="stylesheet" href="{% static 'css/note.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
 
     {% block extra_css %}{% endblock %}
 </head>
@@ -54,6 +55,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'team:team' %}">Team</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'assistant' %}">Assistant</a>
