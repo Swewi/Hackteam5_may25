@@ -143,6 +143,7 @@ justify-content: center;
 .note-tile {
 width: 150px;
 height: 150px;
+background: var(--btn-light-color);
 background: #ffffff;
 border-radius: 8px;
 display: block;
@@ -198,4 +199,10 @@ width: 300px;
 /* Back button */
 .back-button {
 margin-bottom: 1rem;
+}
+
+/* Custom button */
+.btn-filter {
+    background-color: var(--btn-light-color);
+    color: var(--font-color);
 }
