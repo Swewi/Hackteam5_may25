@@ -1,13 +1,98 @@
 {% extends 'base.html' %}
 {% block title %}Notes{% endblock %}
 {% block content %}
+<style>
+    .interaction {
+        /* display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px; */
+        display:block;
+        text-align: left;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .user-question {
+        font-weight: bold;
+        color: #0c1d2f;
+        background-color: #e6f0ff;
+        position: relative;
+        border: 2px solid #0c1d2f;
+        border-radius: 20px;
+        padding: 16px 24px;
+        margin: 16px 0 24px 0;
+    }
+
+    .user-question::after {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 15px;
+        width: 0;
+        height: 0;
+        border: 12px solid transparent;
+        border-bottom: 16px solid #0c1d2f;
+        border-top: 0;
+        border-radius: 4px;
+    }
+
+    .gemini-response {
+        background-color: #e6f0ff;
+        font-style: italic;
+        font-weight: bold;
+        color: #11441d;        
+        /* Ensures the image covers the whole div */
+        background-repeat: no-repeat;
+        /* Prevents tiling */
+        background-position: center;
+        /* Centers the image */
+        position: relative;
+        border: 2px solid #11441d;
+        border-radius: 20px;
+        padding: 16px 24px;
+        margin: 16px 0 24px 0;
+    }
+
+    .gemini-response::after {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 15px;
+        width: 0;
+        height: 0;
+        border: 12px solid transparent;
+        border-bottom: 16px solid #11441d;
+        border-top: 0;
+        border-radius: 4px;
+    }
+
+    .you-label {
+        font-weight: bold;
+        color: #0c1d2f;  
+        margin-left: 10px;    
+    }
+
+    .assistant-label {
+        font-style: italic;
+        font-weight: bold;
+        color: #11441d;  
+        margin-left: 10px;
+    }
+</style>
+
 <div style="position: absolute; top: 100px; width: 100%;">
     <h2>Note Details</h2>
     <h1>{{ note.title }}</h1>
     {% for interaction in interactions %}
     <div class="interaction">
-        <p>{{ interaction.question }}</p>
-        <p>{{ interaction.answer }}</p>
+        <div class="you-label">You:</div>
+        <div class="user-question">{{ interaction.question|linebreaksbr }}</div>
+        <div class="assistant-label">Assistant:</div>
+        <div class="gemini-response">{{ interaction.answer|linebreaksbr }}</div>
     </div>
     {% empty %}
     <p>No interactions available.</p>

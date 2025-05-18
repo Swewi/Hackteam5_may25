@@ -1,29 +1,127 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Assistant{% endblock %}
 {% block content %}
-<div style="position: fixed; top: 66px; left: 0; width: 100%; background-color: #f8f9fa; padding: 10px; border-bottom: 1px solid #ccc; z-index: 1000;">
+<style>
+    .interaction {
+        /* display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px; */
+        display:block;
+        text-align: left;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .user-question {
+        font-weight: bold;
+        color: #0c1d2f;
+        background-color: #e6f0ff;
+        position: relative;
+        border: 2px solid #0c1d2f;
+        border-radius: 20px;
+        padding: 16px 24px;
+        margin: 16px 0 24px 0;
+    }
+
+    .user-question::after {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 15px;
+        width: 0;
+        height: 0;
+        border: 12px solid transparent;
+        border-bottom: 16px solid #0c1d2f;
+        border-top: 0;
+        border-radius: 4px;
+    }
+
+    .gemini-response {
+        background-color: #e6f0ff;
+        font-style: italic;
+        font-weight: bold;
+        color: #11441d;        
+        /* Ensures the image covers the whole div */
+        background-repeat: no-repeat;
+        /* Prevents tiling */
+        background-position: center;
+        /* Centers the image */
+        position: relative;
+        border: 2px solid #11441d;
+        border-radius: 20px;
+        padding: 16px 24px;
+        margin: 16px 0 24px 0;
+    }
+
+    .gemini-response::after {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 15px;
+        width: 0;
+        height: 0;
+        border: 12px solid transparent;
+        border-bottom: 16px solid #11441d;
+        border-top: 0;
+        border-radius: 4px;
+    }
+
+    .you-label {
+        font-weight: bold;
+        color: #0c1d2f;  
+        margin-left: 10px;    
+    }
+
+    .assistant-label {
+        font-style: italic;
+        font-weight: bold;
+        color: #11441d;  
+        margin-left: 10px;
+    }
+
+    #user-prompt {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        margin-right: 5px;
+        cursor: pointer;
+    }
+</style>
+<div
+    style="position: fixed; top: 66px; left: 0; width: 100%; background-color: #f8f9fa; padding: 10px; border-bottom: 1px solid #ccc; z-index: 1000;">
     <button id="save_conversation" style="float: right;">Save conversation</button>
 </div>
 <h1 style="margin-top: 60px;">Welcome to the Assistant Page</h1>
 <p>Ask a question to get help.</p>
 {% for interaction in history %}
-<div class="interaction" style="text-align: center; margin: 10px; padding: 10px; border: 1px solid #ccc;">
-    <p class="user-question">You: {{ interaction.question }}</p>
-    <div class="gemini-response">AI Name: {{ interaction.answer|linebreaksbr }}</div>
+<div class="interaction" >
+    <div class="you-label">You</div>
+    <div class="user-question">{{ interaction.question }}</div>
+    <div class="assistant-label">Assistant</div>
+    <div class="gemini-response">{{ interaction.answer|linebreaksbr }}</div>
     <small>{{ interaction.timestamp }}</small>
 </div>
 {% empty %}
 <p>No previous interactions.</p>
 {% endfor %}
 <!-- <div id="gemini_response"></div> -->
-<div id="user-prompt" style="text-align: center;">
-    <input type="text" id="user_input" placeholder="Ask Gemini a question..." style="width: 80%;">
-    <button id="send_button">Send</button>
+<div id="user-prompt">
+    <input type="text" id="user_input" placeholder="Ask Assistant a question..." style="min-width: 85%;">
+    <button id="send_button"><i class="fa fa-paper-plane"></i></button>
 </div>
 
-<div id="saveModal" class="modal" style="display: none; position: fixed; z-index: 1050; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
-    <div class="modal-content" style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 50%;">
-        <span id="closeModal" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+<div id="saveModal" class="modal"
+    style="display: none; position: fixed; z-index: 1050; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+    <div class="modal-content"
+        style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 50%;">
+        <span id="closeModal"
+            style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" style="width: 100%; margin-bottom: 10px;">
         <div id="validation-message" style="color: red; "></div>
@@ -90,9 +188,9 @@
     okButton.addEventListener('click', () => {
         const titleField = document.getElementById('title');
         const validationMessage = document.getElementById('validation-message');
-        
+
         if (titleField.value.trim() === '') {
-            validationMessage.innerHTML ='Title cannot be empty!';
+            validationMessage.innerHTML = 'Title cannot be empty!';
             return;
         }
 
@@ -105,26 +203,26 @@
             },
             body: `title=${encodeURIComponent(titleField.value)}`
         })
-        .then(response => response.json())
-        .then(data => {
-            // If data contains status=='success', show success message
-            if (data.status === 'success') {
-                showMessage('Conversation saved successfully!');
-            } else {
-                alert('Failed to save conversation.');
-            }            
-            modal.style.display = 'none';
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred while saving the conversation.');
-        });
+            .then(response => response.json())
+            .then(data => {
+                // If data contains status=='success', show success message
+                if (data.status === 'success') {
+                    showMessage('Conversation saved successfully!');
+                } else {
+                    alert('Failed to save conversation.');
+                }
+                modal.style.display = 'none';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while saving the conversation.');
+            });
     });
 
     // Clear validation message when user starts typing in the title input
     const titleInput = document.getElementById('title');
     const validationMessage = document.getElementById('validation-message');
-    titleInput.addEventListener('keyup', function() {
+    titleInput.addEventListener('keyup', function () {
         if (validationMessage.innerHTML !== '') {
             validationMessage.innerHTML = '';
         }
@@ -151,8 +249,13 @@
         messageDiv.style.borderRadius = '5px';
         messageDiv.style.zIndex = '1001';
         messageDiv.style.color = 'green';
+        messageDiv.style.fontWeight = 'bold';
+        messageDiv.style.border = '1px solid #ccc';
+        messageDiv.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        messageDiv.style.fontSize = '16px';
+        messageDiv.style.transition = 'opacity 0.5s ease-in-out';
         document.body.appendChild(messageDiv);
-        
+
         setTimeout(() => {
             document.body.removeChild(messageDiv);
         }, 5000);
