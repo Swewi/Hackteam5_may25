@@ -1,0 +1,161 @@
+/* General Styles */
+body {
+padding-bottom: 80px;
+}
+/* Assistant header */
+.assistant-title {
+margin-top: 20px;
+}
+/* Interaction blocks */
+.interaction {
+display: block;
+text-align: left;
+margin: 10px;
+padding: 10px;
+}
+.user-question {
+font-weight: bold;
+color: #0c1d2f;
+background-color: #e6f0ff;
+position: relative;
+border: 2px solid #0c1d2f;
+border-radius: 20px;
+padding: 16px 24px;
+margin: 16px 0 24px 0;
+}
+.user-question::after {
+content: '';
+position: absolute;
+top: -20px;
+left: 15px;
+width: 0;
+height: 0;
+border: 12px solid transparent;
+border-bottom: 16px solid #0c1d2f;
+border-top: 0;
+border-radius: 4px;
+}
+.gemini-response {
+background-color: #e6f0ff;
+font-style: italic;
+font-weight: bold;
+color: #11441d;
+background-repeat: no-repeat;
+background-position: center;
+position: relative;
+border: 2px solid #11441d;
+border-radius: 20px;
+padding: 16px 24px;
+margin: 16px 0 24px 0;
+}
+.gemini-response::after {
+content: '';
+position: absolute;
+top: -20px;
+left: 15px;
+width: 0;
+height: 0;
+border: 12px solid transparent;
+border-bottom: 16px solid #11441d;
+border-top: 0;
+border-radius: 4px;
+}
+.you-label {
+font-weight: bold;
+color: #0c1d2f;
+margin-left: 10px;
+}
+.assistant-label {
+font-style: italic;
+font-weight: bold;
+color: #11441d;
+margin-left: 10px;
+}
+/* User input area */
+#user-prompt {
+width: 75%;
+margin: 20px auto;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+#save_conversation {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+font-size: 20px;
+background-color: #e6f0ff;
+height: 30px;
+width: 30px;
+border: 2px solid #0c1d2f;
+border-radius: 5px;
+margin: 0;
+}
+/* Success notification */
+.notification-message {
+transition: opacity 0.5s ease-in-out;
+z-index: 9999;
+}
+.fade-out {
+opacity: 0;
+}
+/* Notes tile styling */
+.notes-tiles-container {
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+margin-top: 20px;
+justify-content: center;
+}
+.note-tile {
+width: 150px;
+height: 150px;
+background: #f0f0f0;
+border-radius: 8px;
+display: block;
+text-align: center;
+font-weight: bold;
+font-size: 14px;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+transition: box-shadow 0.2s;
+cursor: pointer;
+padding: 10px;
+}
+.note-tile:hover {
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+background: #e0e7ff;
+}
+/* Delete icon */
+.delete-icon {
+cursor: pointer;
+position: relative;
+margin-left: 80%;
+top: 5px;
+right: 5px;
+color: #ff0000;
+font-size: 16px;
+}
+/* Modal styles */
+.modal-custom {
+z-index: 2000;
+}
+.validation-message {
+color: #dc3545;
+}
+/* Content container spacing */
+.content-container {
+margin-top: 60px;
+}
+/* Filter form */
+.filter-form {
+margin-bottom: 20px;
+text-align: center;
+}
+.filter-input {
+width: 300px;
+}
+/* Back button */
+.back-button {
+margin-bottom: 1rem;
+}

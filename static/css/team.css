@@ -1,16 +1,16 @@
-/* About page */
-
 .details-section {
   display: none;
-  position: absolute;
+  position: absolute; /* Reverted to absolute positioning */
   top: 20%;
-  right: 5%;
-  width: 30%;
+  right: 5%; /* Restored original right positioning */
+  width: 30%; /* Restored original width */
   background: white;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 20px rgba(0,0,0,0.3); /* Enhanced shadow */
   transition: all 0.3s ease-in-out;
-  z-index: 2;
+  z-index: 100; /* Increased z-index */
+  border-radius: 10px; /* Added rounded corners */
+  text-align: center; /* Center content */
 }
 
 .details-section.visible {
@@ -19,11 +19,12 @@
 
 .details-section img {
   width: 50%;
+  display: block; /* Keep as block element */
+  border-radius: 5px; /* Rounded corners */
 }
 
 .data-border {
-  border: 5px solid;
-  box-shadow: none;
+  border: 5px solid #bc5ac1; /* Single color for all borders */
   box-shadow: inset 1px 1px 3px #333, inset -1px -1px 3px #333, 0px 5px 10px #333;
 }
 
@@ -42,6 +43,7 @@
   color: #000;
   font-size: 1.5rem;
   cursor: pointer;
+  z-index: 101; /* Ensure it's above other content */
 }
 
 .close-btn:hover {
@@ -57,6 +59,7 @@
   font-size: 35px;
   margin-right: 10px;
   text-decoration: none;
+  display: inline-block; /* Ensure they display properly */
 }
 
 .about-link-icon:hover {
@@ -76,10 +79,10 @@
   position: absolute;
   width: 170px;
   height: 10px;
-  top: 4%;
-  left: calc(50% - 100px);
+  top: 50%; /* Changed from 4% to 50% */
+  left: 50%;
+  transform: translate(-50%, -50%) perspective(1000px); /* Added translate for true centering */
   transform-style: preserve-3d;
-  transform: perspective(1000px);
   animation: autoRun 25s linear infinite;
   z-index: 1;
 }
@@ -100,7 +103,7 @@
 .banner .slider .item {
     position: absolute;
     inset: 0 0 0 0;
-    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(550px);
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(650px); /* Increased translateZ to make the circle larger */
     transition: transform 1s;
 }
   
@@ -147,60 +150,16 @@
   -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
 }
   
-  .spacing .polariod .card-axis:hover {
-    color: #000;
-    border: 2px solid #ffffff;
-  }
-  
-  /* Add hover effects for color classes */
-.spacing .polariod .card-axis.red:hover {
-  background: #ffadad;
-  box-shadow: 0 0 5px #e40303, 0 0 10px #e40303, inset 0 0 5px #e40303,
-  -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
-  -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
-}
-  
-.spacing .polariod .card-axis.orange:hover {
-  background: #ffd6a5;
-  box-shadow: 0 0 5px #ff8c00, 0 0 10px #ff8c00, inset 0 0 5px #ff8c00,
-  -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
-  -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
-}
-  
-.spacing .polariod .card-axis.yellow:hover {
-  background: #fdffb6;
-  box-shadow: 0 0 5px #ffed00, 0 0 10px #ffed00, inset 0 0 5px #ffed00,
-  -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
-  -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
-}
-  
-.spacing .polariod .card-axis.green:hover {
-  background: #caffbf;
-  box-shadow: 0 0 5px #008026, 0 0 10px #008026, inset 0 0 5px #008026,
-  -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
-  -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
-}
-  
-.spacing .polariod .card-axis.blue:hover {
-  background: #9bf6ff;
-  box-shadow: 0 0 5px #004dff, 0 0 10px #004dff, inset 0 0 5px #004dff,
-  -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
-  -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
-}
-  
-.spacing .polariod .card-axis.indigo:hover {
-  background: #bdb2ff;
-  box-shadow: 0 0 5px #570997, 0 0 10px #570997, inset 0 0 5px #570997,
+.spacing .polariod .card-axis:hover {
+  color: #000;
+  border: 2px solid #ffffff;
+  /* Simplified hover color for all cards */
+  background: #bc5ac1;
+  box-shadow: 0 0 5px #bc5ac1, 0 0 10px #bc5ac1, inset 0 0 5px #bc5ac1,
   -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
   -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
 }
 
-.spacing .polariod .card-axis.violet:hover {
-  background: #ffc6ff;
-  box-shadow: 0 0 5px #750787, 0 0 10px #750787, inset 0 0 5px #750787,
-  -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
-  -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
-}
   
 .spacing .polariod .card-axis.flipped {
   transform: rotateY(180deg);
@@ -259,123 +218,51 @@
   bottom: 0;
   left: 50%;
   transform: translate(-50%);
-  font-family: Playwrite DE VA;
   font-size: 1.3rem;
   margin-top: -0.3rem!important;
 }
-  
-.prideful {
-  position: absolute;
-  top: 0;
-  margin-top: 59vh;
-  margin-left: 37vw;
-  z-index: 1;
-}
 
-.prideful h2 {
-  font-size: 70px;
-  position: relative;
-  color: black;
-}
-
-.prideful h2::after {
-  content: 'Prideful Pixels';
-  position: absolute;
-  top: 70%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: transparent;
-  background: linear-gradient(to bottom, #ffadad, #ffd6a5, #fdffb6, #caffbf,
-  #9bf6ff, #a0c4ff, #bdb2ff, #ffc6ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  transform: scaleY(-1);
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.light {
-  cursor: pointer;
-}
-
-.light i {
-  color: #fdffb6;
-}
-
-.card-axis.red.highlight, .card-axis.orange.highlight, .card-axis.yellow.highlight, .card-axis.green.highlight,
-.card-axis.blue.highlight,.card-axis.indigo.highlight, .card-axis.violet.highlight {
+/* Simplified highlight effect for all cards */
+.card-axis.highlight {
   border: 2px solid #ffffff;
-}
-  
-/* Add hover effects for color classes */
-.card-axis.red.highlight {
-  background: #ffadad;
-  box-shadow: 0 0 5px #e40303, 0 0 10px #e40303, inset 0 0 5px #e40303,
+  background: #bc5ac1;
+  box-shadow: 0 0 5px #bc5ac1, 0 0 10px #bc5ac1, inset 0 0 5px #bc5ac1,
   -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
   -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
 }
-  
-.card-axis.orange.highlight {
-  background: #ffd6a5;
-  box-shadow: 0 0 5px #ff8c00, 0 0 10px #ff8c00, inset 0 0 5px #ff8c00,
-  -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
-  -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
+
+/* Removed all individual .card-axis.color.highlight blocks */
+
+@media (max-width: 1200px) {
+  .spacing .polariod {
+    width: clamp(300px, 30vw, 600px);
+    height: clamp(300px, 30vw, 600px);
+  }
 }
-  
-.card-axis.yellow.highlight {
-  background: #fdffb6;
-  box-shadow: 0 0 5px #ffed00, 0 0 10px #ffed00, inset 0 0 5px #ffed00,
-  -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
-  -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
-}
-  
-.card-axis.green.highlight {
-  background: #caffbf;
-  box-shadow: 0 0 5px #008026, 0 0 10px #008026, inset 0 0 5px #008026,
-  -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
-  -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
-}
-  
-.card-axis.blue.highlight {
-  background: #9bf6ff;
-  box-shadow: 0 0 5px #004dff, 0 0 10px #004dff, inset 0 0 5px #004dff,
-  -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
-  -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
-}
-  
-.card-axis.indigo.highlight {
-  background: #bdb2ff;
-  box-shadow: 0 0 5px #570997, 0 0 10px #570997, inset 0 0 5px #570997,
-  -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
-  -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
-}
-  
-.card-axis.violet.highlight {
-  background: #ffc6ff;
-  box-shadow: 0 0 5px #750787, 0 0 10px #750787, inset 0 0 5px #750787,
-  -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
-  -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
-} 
 
 @media (max-width: 991px) { 
   .banner .slider .item {
-    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(200px);
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(400px);
   }
-
-  .prideful {
-    width: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    margin-top: 70vh;
-    z-index: 1;
+  
+  .spacing .polariod {
+    width: clamp(200px, 30vw, 400px);
+    height: clamp(200px, 30vw, 400px);
+  }
+  
+  .light {
+    width: 120px;
+    height: 120px;
   }
 }
 
 @media (max-width: 700px) { 
   .prideful h2 {
     font-size: 300%;
+  }
+  
+  .details-section {
+    width: 95%;
   }
 }
 
@@ -386,5 +273,10 @@
 
   .prideful h2 {
     font-size: 200%;
+  }
+  
+  .light {
+    width: 90px;
+    height: 90px;
   }
 }
