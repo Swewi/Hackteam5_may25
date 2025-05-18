@@ -4,22 +4,45 @@
     {% trans "Sign Out" %}
 {% endblock head_title %}
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Out" %}
-    {% endelement %}
-    {% element p %}
-        {% trans 'Are you sure you want to sign out?' %}
-    {% endelement %}
-    {% url 'account_logout' as action_url %}
-    {% element form method="post" action=action_url no_visible_fields=True %}
-        {% slot body %}
+<div class="container-md d-flex align-items-center h-100">
+    <div class="text-background py-4 rounded-5 mx-auto w-80">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-12 col-sm-6">
+                <h1 class="text-center">{% trans "Sign Out" %}</h1>
+
+                <p class="text-center">{% trans 'Are you sure you want to sign out?' %}</p>
+            </div>
+            <div class="col-md-12 col-sm-6 d-flex justify-content-center py-2">
+                <button type="button" class="btn btn-custom rounded-2" data-bs-toggle="modal" data-bs-target="#logout-modal">
+                    {% trans "Sign Out" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="logout-modal" tabindex="-1" aria-labelledby="logout-modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{% trans "Sign Out" %}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          {% trans 'Are you sure you want to sign out?' %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-custom rounded-2" data-bs-dismiss="modal">{% trans "Close" %}</button>
+          <form method="post" action="{% url 'account_logout' %}">
             {% csrf_token %}
-            {{ redirect_field }}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" %}
-                {% trans 'Sign Out' %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button class="btn btn-custom-dark rounded-2 w-100" type="submit">{% trans "Sign Out" %}</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
