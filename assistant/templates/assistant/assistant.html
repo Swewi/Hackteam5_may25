@@ -113,17 +113,16 @@
 <h1 style="margin-top: 60px;">Welcome to the Assistant Page</h1>
 <p>Ask a question to get help.</p>
 {% for interaction in history %}
-<div class="interaction" >
+<div class="interaction">
     <div class="you-label">You</div>
     <div class="user-question">{{ interaction.question }}</div>
     <div class="assistant-label">Assistant</div>
     <div class="gemini-response">{{ interaction.answer|linebreaksbr }}</div>
-    <small>{{ interaction.timestamp }}</small>
+    <small class="text-muted">{{ interaction.timestamp }}</small>
 </div>
 {% empty %}
 <p>No previous interactions.</p>
 {% endfor %}
->
 <div id="user-prompt">
     <input type="text" id="user_input" placeholder="Ask Assistant a question..." style="min-width: 85%;">
     <button id="send_button"><i class="fa fa-paper-plane"></i></button>
@@ -147,17 +146,22 @@
         </div>
     </div>
 </div>
-
 <script>
     const userInput = document.getElementById('user_input');
     const sendButton = document.getElementById('send_button');
-    // const geminiResponse = document.getElementById('gemini_response');
 
     sendButton.addEventListener('click', () => {
         const question = userInput.value;
+        if (!question.trim()) {
+            alert('Please enter a question');
+            return;
+        }
+        
         // replace contents of user-prompt with a spinner icon
         const userPrompt = document.getElementById('user-prompt');
-        userPrompt.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        const originalPromptHTML = userPrompt.innerHTML;
+        userPrompt.innerHTML = '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+        
         fetch('/assistant/', {  //  Use the correct URL for your view
             method: 'POST',
             headers: {
@@ -166,14 +170,21 @@
             },
             body: `question=${encodeURIComponent(question)}`
         })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
                 // Refresh the page
                 location.reload();
             })
             .catch(error => {
                 console.error('Error:', error);
-                geminiResponse.textContent = 'An error occurred.';
+                alert('An error occurred while processing your question.');
+                // Restore the original input prompt
+                userPrompt.innerHTML = originalPromptHTML;
             });
     });
 
@@ -188,17 +199,25 @@
     const closeModal = document.getElementById('closeModal');
     const cancelButton = document.getElementById('cancelButton');
     const okButton = document.getElementById('okButton');
+    
+    // Initialize Bootstrap modal
+    const saveModalElement = new bootstrap.Modal(modal);
 
     saveButton.addEventListener('click', () => {
-        modal.style.display = 'block';
+        // Clear any previous validation messages
+        document.getElementById('validation-message').innerHTML = '';
+        // Clear the title field
+        document.getElementById('title').value = '';
+        // Show the modal
+        saveModalElement.show();
     });
 
     closeModal.addEventListener('click', () => {
-        modal.style.display = 'none';
+        saveModalElement.hide();
     });
 
     cancelButton.addEventListener('click', () => {
-        modal.style.display = 'none';
+        saveModalElement.hide();
     });
 
     okButton.addEventListener('click', () => {
@@ -210,6 +229,11 @@
             return;
         }
 
+        // Disable the OK button and show loading state
+        okButton.disabled = true;
+        const originalButtonText = okButton.innerHTML;
+        okButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Saving...';
+
         // Fetch request to save the conversation
         fetch('/assistant/save-conversation/', {
             method: 'POST',
@@ -219,35 +243,45 @@
             },
             body: `title=${encodeURIComponent(titleField.value)}`
         })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
-                // If data contains status=='success', show success message
+                // Hide the modal first
+                saveModalElement.hide();
+                
+                // If data contains status=='success', show success message and redirect to notes page
                 if (data.status === 'success') {
                     showMessage('Conversation saved successfully!');
+                    
+                    // Optional: Redirect to the notes page after a short delay
+                    setTimeout(() => {
+                        window.location.href = '/notes/';
+                    }, 1500);
                 } else {
-                    alert('Failed to save conversation.');
+                    alert('Failed to save conversation: ' + (data.message || 'Unknown error'));
                 }
-                modal.style.display = 'none';
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('An error occurred while saving the conversation.');
+                alert('An error occurred while saving the conversation: ' + error.message);
+            })
+            .finally(() => {
+                // Reset button state
+                okButton.disabled = false;
+                okButton.innerHTML = originalButtonText;
             });
     });
 
     // Clear validation message when user starts typing in the title input
     const titleInput = document.getElementById('title');
     const validationMessage = document.getElementById('validation-message');
-    titleInput.addEventListener('keyup', function () {
+    titleInput.addEventListener('input', function () {
         if (validationMessage.innerHTML !== '') {
             validationMessage.innerHTML = '';
-        }
-    });
-
-    // Close the modal when clicking outside of it
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
         }
     });
 
@@ -256,25 +290,18 @@
     function showMessage(message) {
         const messageDiv = document.createElement('div');
         messageDiv.textContent = message;
-        messageDiv.style.position = 'fixed';
-        messageDiv.style.top = '10px';
-        messageDiv.style.left = '50%';
-        messageDiv.style.transform = 'translateX(-50%)';
-        messageDiv.style.backgroundColor = '#f0f0f0';
-        messageDiv.style.padding = '10px';
-        messageDiv.style.borderRadius = '5px';
-        messageDiv.style.zIndex = '1001';
-        messageDiv.style.color = 'green';
-        messageDiv.style.fontWeight = 'bold';
-        messageDiv.style.border = '1px solid #ccc';
-        messageDiv.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-        messageDiv.style.fontSize = '16px';
-        messageDiv.style.transition = 'opacity 0.5s ease-in-out';
+        messageDiv.className = 'alert alert-success notification-message position-fixed top-0 start-50 translate-middle-x mt-4';
+        messageDiv.style.zIndex = '9999';
         document.body.appendChild(messageDiv);
 
         setTimeout(() => {
-            document.body.removeChild(messageDiv);
-        }, 5000);
+            messageDiv.classList.add('fade-out');
+            setTimeout(() => {
+                if (document.body.contains(messageDiv)) {
+                    document.body.removeChild(messageDiv);
+                }
+            }, 500);
+        }, 4500);
     }
 
     function getCookie(name) {
@@ -292,5 +319,14 @@
         return cookieValue;
     }
 </script>
+
+<style>
+    .notification-message {
+        transition: opacity 0.5s ease-in-out;
+    }
+    .fade-out {
+        opacity: 0;
+    }
+</style>
 {% csrf_token %}
 {% endblock %}

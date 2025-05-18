@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Contact form page -->
+<div class="row g-0 justify-content-center">
+    <div class="col-12 col-md-6 my-5" id="contact-pg">
+        <h2 id="contact-heading">We love crafting!</h2>
+        <div id="contact-description">
+            <p>Have you seen anything on this blog that takes your fancy? Maybe you have got inspiration from a website
+                and need help? Ask us!</p>
+            <p>One of our members specialises in knitted socks and items, textiles, and small woodworking projects. The
+                other member specialises in paracord projects, rope both new and upcycled, and chainmail.</p>
+            <p>Both of us make historically inspired items. We nålbind (needle-binding), a type of yarn work
+                that predates knitting or crochet. We have been known to hand stitch hats, bags, and pouches, and even
+                tunics and dresses!</p>
+        </div>
+        <!-- Form to be used for contacting/ordering -->
+        <form id="contactForm" class="contact-form" method="post" action="{% url 'contact' %}">
+            {% csrf_token %}
+            {{ contact_form.non_field_errors }}
+            <p id="contact-name">
+                {{ contact_form.name.label_tag }}
+                {{ contact_form.name }}
+            </p>
+            <p id="contact-email">
+                {{ contact_form.email.label_tag }}
+                {{ contact_form.email }}
+            </p>
+            <p id="contact-msg">
+                {{ contact_form.message.label_tag }}
+                {{ contact_form.message }}
+            </p>
+            <button id="contact-submit" class="btn btn-secondary btn-signup" type="submit" aria-label="Submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

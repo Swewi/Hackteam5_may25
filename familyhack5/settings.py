@@ -99,6 +99,7 @@ INSTALLED_APPS = [
     'assistant',
     'notes',
     'team',
+    'contact',
     
     # Baton admin app (must be after all apps)
     'baton.autodiscover',
@@ -249,7 +250,6 @@ cloudinary.config(
     secure=True
 )
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -295,3 +295,6 @@ ACCOUNT_SIGNUP_FIELDS = ['username*', 'password1*', 'password2*']
 # Redirect to home page after login or signup
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_REDIRECT_URL = '/'
+
+# Fake email sending
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

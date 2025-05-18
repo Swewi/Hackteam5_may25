@@ -19,6 +19,7 @@ django-allauth==65.5.0
 django-baton==4.2.2
 django-bootstrap5==25.1
 django-browser-reload==1.18.0
+django-crispy-forms==2.4
 django-import-export==4.3.7
 django-jinja==2.11.0
 google-ai-generativelanguage==0.6.15
