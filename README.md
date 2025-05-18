@@ -11,6 +11,7 @@
 * [Tech Stack](#tech-stack)
 * [Features](#features)
 * [How to Use](#how-to-use)
+* [Entity Relationship Diagram](#entity-relationship-diagram)
 * [Manual Testing](#manual-testing)
 * [Wireframes](#wireframes)
 * [User Stories](#user-stories)
@@ -61,6 +62,48 @@ For example, a user could ask:
 3.  **Usage**
     * Once the application is running, users can type their tech support questions into the input field on the main page.
     * The AI-generated response will be displayed on the page.
+</details>
+
+## Entity Relationship Diagram
+<details><summary>Models</summary>
+```mermaid
+erDiagram
+    User {
+        int id
+        string username
+        string password
+    }
+    
+    Note {
+        int id
+        string title
+        datetime created_at
+        int interaction_start_id
+        int interaction_end_id
+        int user_id
+    }
+    
+    Interaction {
+        int id
+        string question
+        string answer
+        float timestamp
+        int usr_id
+    }
+
+    User ||--o{ Note : owns
+    User ||--o{ Interaction : has
+    Note ||--|| Interaction : start_id (interaction_start_id)
+    Note ||--|| Interaction : end_id (interaction_end_id)
+    Note ||--o{ Interaction : references (via start_id to end_id)
+    Interaction }o--|| User : belongs_to (usr)
+```
+
+- Only the User model is shown from external packages.
+- Note references a range of Interactions (from interaction_start_id to interaction_end_id).
+- Each Interaction belongs to a User.
+- Each Note belongs to a User.
+
 </details>
 
 ## Manual Testing
