@@ -4,42 +4,45 @@
     {% trans "Signup" %}
 {% endblock head_title %}
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
-    {% setvar link %}
-        <a href="{{ login_url }}">
-        {% endsetvar %}
-        {% setvar end_link %}
-        </a>
-    {% endsetvar %}
-    {% element p %}
-        {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
-    {% endelement %}
-    {% if not SOCIALACCOUNT_ONLY %}
-        {% url 'account_signup' as action_url %}
-        {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-            {% slot body %}
-                {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
+
+<div class="container-md d-flex align-items-center h-100">
+    <div class="text-background py-4 rounded-5 mx-auto w-80">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-12 col-sm-6">
+                <h1 class="text-center">{% trans "Sign Up" %}</h1>
+
+                {% setvar link %}
+                    <a href="{{ login_url }}">
+                    {% endsetvar %}
+                    {% setvar end_link %}
+                    </a>
+                {% endsetvar %}
+                <p id="login-link" class="text-center">
+                    {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
+                </p>
+            </div>
+            <div class="col-md-12 col-sm-6 d-flex justify-content-center py-2">
+                <form class="signup" id="signup-form" method="POST" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <button class="btn btn-custom rounded-2" type="submit">{% trans "Sign Up" %}</button>
+                </form>
+            {% if PASSKEY_SIGNUP_ENABLED %}
+                {% element hr %}
                 {% endelement %}
-                {{ redirect_field }}
-            {% endslot %}
-            {% slot actions %}
-                {% element button tags="prominent,signup" type="submit" %}
-                    {% trans "Sign Up" %}
+                {% element button href=signup_by_passkey_url tags="prominent,signup,outline,primary" %}
+                    {% trans "Sign up using a passkey" %}
                 {% endelement %}
-            {% endslot %}
-        {% endelement %}
-    {% endif %}
-    {% if PASSKEY_SIGNUP_ENABLED %}
-        {% element hr %}
-        {% endelement %}
-        {% element button href=signup_by_passkey_url tags="prominent,signup,outline,primary" %}
-            {% trans "Sign up using a passkey" %}
-        {% endelement %}
-    {% endif %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+            {% endif %}
+            {% if SOCIALACCOUNT_ENABLED %}
+                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

@@ -23,9 +23,30 @@
     text-decoration: none;
 }
 
-/* Hover effect */
+/* Hover & focus effect */
 .btn-custom:hover,
 #id_password_helptext a:hover,
-#signup-link a:hover {
+#signup-link a:hover, #signup-link a:focus {
     background-color: var(--btn-hover);
+}
+
+/* Media queries */
+/* For mobile screens */
+@media (max-width: 425px) {
+    #id_password {
+        margin-bottom: 10px;
+    }
+}
+
+
+/* For Tablet screens */
+@media (max-width: 768px) {
+    #signup-link a {
+        padding: 0.3rem;
+    }
+
+    #id_password_helptext {
+        font-size: 11px;
+        font-weight: 500;
+    }
 }
