@@ -294,11 +294,17 @@ AUTHENTICATION_BACKENDS = [
 
 # Update deprecated settings for django-allauth
 ACCOUNT_LOGIN_METHODS = {'username'}
-ACCOUNT_SIGNUP_FIELDS = ['username*', 'password1*', 'password2*']
+ACCOUNT_SIGNUP_FIELDS = ['email', 'username*', 'password1*', 'password2*']
 
 # Redirect to home page after login or signup
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_REDIRECT_URL = '/'
 
-# Fake email sending
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# SMTP settings for email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'techunclesmtp@gmail.com'
+EMAIL_HOST_PASSWORD = 'cshq hbbr jrhc ajfu'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
