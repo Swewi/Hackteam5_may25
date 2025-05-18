@@ -87,7 +87,9 @@
     <h1>{{ note.title }}</h1>
     {% for interaction in interactions %}
     <div class="interaction">
+        <div class="you-label">You:</div>
         <div class="user-question">{{ interaction.question|linebreaksbr }}</div>
+        <div class="assistant-label">Assistant:</div>
         <div class="gemini-response">{{ interaction.answer|linebreaksbr }}</div>
     </div>
     {% empty %}
