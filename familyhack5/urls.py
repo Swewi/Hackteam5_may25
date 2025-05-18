@@ -21,6 +21,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('', home, name='home'),
+    path('baton/', include('baton.urls')),  # baton admin
     path('admin/', admin.site.urls),
     path('', include('assistant.urls')),  #  Include the 'assistant' app URLs
     path('accounts/', include('allauth.urls')),  # Add django-allauth URLs
