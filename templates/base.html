@@ -28,17 +28,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/assistant.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/team.css' %}">
     <link rel="stylesheet" href="{% static 'css/account/login.css' %}">
     <link rel="stylesheet" href="{% static 'css/account/signup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/note.css' %}">
 
     {% block extra_css %}{% endblock %}
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed; top: 0; width: 100%; z-index: 1000;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand ms-2 ps-1 py-2" id="logo" href="/"><img src="{% static 'images/logo.png' %}"
                     alt="uncleTech logo" /></a>

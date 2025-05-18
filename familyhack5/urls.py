@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),  # Add django-allauth URLs
     path('notes/', include('notes.urls')),  # Include the 'notes' app URLs
     path('team/', include('team.urls')),  # Include the 'team' app URLs
+    path("contact/", include("contact.urls")), # Include the 'contact' app URLs
 ]
 
 if settings.DEBUG:
