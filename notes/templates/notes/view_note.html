@@ -2,11 +2,11 @@
 {% block title %}Notes{% endblock %}
 {% block content %}
 <div class="content-container">
-    <a href="/notes/" class="btn btn-secondary back-button">
+    <a href="/notes/" class="btn btn-secondary back-button ms-5">
         <i class="fas fa-arrow-left"></i> Back to Notes
     </a>
-    <h2>Note Details</h2>
-    <h1>{{ note.title }}</h1>
+    <h2 class="text-center">Note Details</h2>
+    <h1 class="text-center">{{ note.title }}</h1>
     {% for interaction in interactions %}
     <div class="interaction">
         <div class="you-label">You:</div>
