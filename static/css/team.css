@@ -28,12 +28,6 @@
   box-shadow: inset 1px 1px 3px #333, inset -1px -1px 3px #333, 0px 5px 10px #333;
 }
 
-.drip-about {
-  width: 100%;
-  bottom: -53px;
-  right: 0;
-}
-
 .close-btn {
   position: absolute;
   top: 10px;
@@ -86,7 +80,13 @@
   animation: autoRun 25s linear infinite;
   z-index: 1;
 }
-  
+
+.team-logo {
+    max-width: 20rem;
+    border: 2px solid #45022dff;    
+    box-shadow: #0c0c0cff 0px 0px 20px;
+}
+
 @keyframes autoRun {
   from {
     transform: perspective(1000px) rotateX(-4deg) rotateY(0deg);
