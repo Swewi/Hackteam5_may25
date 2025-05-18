@@ -1,0 +1,6 @@
+.gemini-chat {
+    background-color: #fff;
+    border-color: var(--btn-light-color);
+    border-width: medium;
+    color: var(--text-color);
+}
