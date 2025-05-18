@@ -20,6 +20,7 @@
         <input type="text" id="user_input" placeholder="Ask Assistant a question..." class="form-control flex-grow-1">
         <button id="send_button" class="btn btn-primary"><i class="fa fa-paper-plane"></i></button>
         <span id="save_conversation"><i class="fas fa-save"></i></span>
+        <span id="clear_chat"><i class="fas fa-redo"></i></span>
     </div>
 </div>
 <!-- Save Conversation Modal -->
@@ -76,7 +77,7 @@
             })
             .then(data => {
                 // Refresh the page
-                location.reload();
+                location.reload();                
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -220,6 +221,28 @@
         }
         return cookieValue;
     }
+
+    const clearChatButton = document.getElementById('clear_chat');
+    clearChatButton.addEventListener('click', function () {
+        fetch('/assistant/clear-chat-history/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // reload the page to show the cleared chat history
+                window.location.reload();                
+            } else {
+                alert('Something went wrong while clearing the chat history.');
+            }
+        })
+        .catch(() => {
+            alert('Something went wrong while clearing the chat history.');
+        });
+    });
 </script>
 {% csrf_token %}
 {% endblock %}

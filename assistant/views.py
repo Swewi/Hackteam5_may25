@@ -162,3 +162,12 @@ def list_available_models():
                 print(f"{model}")
     except Exception as e:
         print(f"Error listing models: {e}")
+
+def clear_chat_history(request):
+    """Clears the chat history."""
+    if request.method == "POST":
+        # Clear the session variable
+        request.session["first_interaction_id"] = -1
+        return JsonResponse({"status": "success", "message": "Chat history cleared."})
+
+    return JsonResponse({"status": "error", "message": "Invalid request."})
