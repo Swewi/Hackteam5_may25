@@ -2,147 +2,43 @@
 {% load static %}
 {% block title %}Assistant{% endblock %}
 {% block content %}
-<style>
-    .interaction {
-        /* display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px; */
-        display:block;
-        text-align: left;
-        margin: 10px;
-        padding: 10px;
-    }
-
-    .user-question {
-        font-weight: bold;
-        color: #0c1d2f;
-        background-color: #e6f0ff;
-        position: relative;
-        border: 2px solid #0c1d2f;
-        border-radius: 20px;
-        padding: 16px 24px;
-        margin: 16px 0 24px 0;
-    }
-
-    .user-question::after {
-        content: '';
-        position: absolute;
-        top: -20px;
-        left: 15px;
-        width: 0;
-        height: 0;
-        border: 12px solid transparent;
-        border-bottom: 16px solid #0c1d2f;
-        border-top: 0;
-        border-radius: 4px;
-    }
-
-    .gemini-response {
-        background-color: #e6f0ff;
-        font-style: italic;
-        font-weight: bold;
-        color: #11441d;        
-        /* Ensures the image covers the whole div */
-        background-repeat: no-repeat;
-        /* Prevents tiling */
-        background-position: center;
-        /* Centers the image */
-        position: relative;
-        border: 2px solid #11441d;
-        border-radius: 20px;
-        padding: 16px 24px;
-        margin: 16px 0 24px 0;
-    }
-
-    .gemini-response::after {
-        content: '';
-        position: absolute;
-        top: -20px;
-        left: 15px;
-        width: 0;
-        height: 0;
-        border: 12px solid transparent;
-        border-bottom: 16px solid #11441d;
-        border-top: 0;
-        border-radius: 4px;
-    }
-
-    .you-label {
-        font-weight: bold;
-        color: #0c1d2f;  
-        margin-left: 10px;    
-    }
-
-    .assistant-label {
-        font-style: italic;
-        font-weight: bold;
-        color: #11441d;  
-        margin-left: 10px;
-    }
-
-    #user-prompt {
-        width: 100%;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        margin-left: 20px;
-        margin-right: 5px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    #save_conversation {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 20px;
-        background-color: #e6f0ff;
-        height: 30px;
-        width: 30px;  
-        border: 2px solid #0c1d2f;
-        border-radius: 5px;
-        margin: 0;
-        /* Remove vertical-align and let flexbox handle alignment */
-    }
-</style>
-
-<h1 style="margin-top: 60px;">Welcome to the Assistant Page</h1>
-<p>Ask a question to get help.</p>
-{% for interaction in history %}
-<div class="interaction">
-    <div class="you-label">You</div>
-    <div class="user-question">{{ interaction.question }}</div>
-    <div class="assistant-label">Assistant</div>
-    <div class="gemini-response">{{ interaction.answer|linebreaksbr }}</div>
-    <small class="text-muted">{{ interaction.timestamp }}</small>
+<div class="content-container">
+    <h1>Welcome to the Assistant Page</h1>
+    <p>Ask a question to get help.</p>
+    {% for interaction in history %}
+    <div class="interaction">
+        <div class="you-label">You</div>
+        <div class="user-question">{{ interaction.question }}</div>
+        <div class="assistant-label">Assistant</div>
+        <div class="gemini-response">{{ interaction.answer|linebreaksbr }}</div>
+        <small class="text-muted">{{ interaction.timestamp }}</small>
+    </div>
+    {% empty %}
+    <p>No previous interactions.</p>
+    {% endfor %}
+    <div id="user-prompt">
+        <input type="text" id="user_input" placeholder="Ask Assistant a question..." class="form-control flex-grow-1">
+        <button id="send_button" class="btn btn-primary"><i class="fa fa-paper-plane"></i></button>
+        <span id="save_conversation"><i class="fas fa-save"></i></span>    
+    </div>
 </div>
-{% empty %}
-<p>No previous interactions.</p>
-{% endfor %}
-<div id="user-prompt">
-    <input type="text" id="user_input" placeholder="Ask Assistant a question..." style="min-width: 85%;">
-    <button id="send_button"><i class="fa fa-paper-plane"></i></button>
-    <span id="save_conversation"><i class="fas fa-save"></i></span>    
-</div>
-
-<div id="saveModal" class="modal"
-    style="display: none; position: fixed; z-index: 1050; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
-    <div class="modal-content"
-        style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 50%;">
-        <span style="font-size: 24px; font-weight: bold;">Save Conversation</span>
-        <br>
-        <span id="closeModal"
-            style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" style="width: 100%; margin-bottom: 10px;">
-        <div id="validation-message" style="color: red; "></div>
-        <div style="text-align: right;">
-            <button type="button" id="cancelButton">Cancel</button>
-            <button type="button" id="okButton">OK</button>
+<!-- Save Conversation Modal -->
+<div id="saveModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold">Save Conversation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModal"></button>
+            </div>
+            <div class="modal-body">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" id="title" name="title" class="form-control mb-2">
+                <div id="validation-message" class="validation-message"></div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" id="cancelButton" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="okButton">OK</button>
+            </div>
         </div>
     </div>
 </div>
@@ -291,7 +187,6 @@
         const messageDiv = document.createElement('div');
         messageDiv.textContent = message;
         messageDiv.className = 'alert alert-success notification-message position-fixed top-0 start-50 translate-middle-x mt-4';
-        messageDiv.style.zIndex = '9999';
         document.body.appendChild(messageDiv);
 
         setTimeout(() => {
@@ -319,14 +214,5 @@
         return cookieValue;
     }
 </script>
-
-<style>
-    .notification-message {
-        transition: opacity 0.5s ease-in-out;
-    }
-    .fade-out {
-        opacity: 0;
-    }
-</style>
 {% csrf_token %}
 {% endblock %}
