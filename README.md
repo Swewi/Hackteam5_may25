@@ -69,7 +69,9 @@ For example, a user could ask:
 </details>
 
 ## Entity Relationship Diagram
+
 <details><summary>Models</summary>
+
 ```mermaid
 erDiagram
     User {
@@ -146,6 +148,8 @@ erDiagram
 | Deleting a note - User clicks on the delete icon of a note | A modal window appears asking the user to confirm the delete | SUCCESS |
 | Deleting a note - In confirmation modal user clicks on **No** | The modal window closes and the note remains intact | SUCCESS |
 | Deleting a note - In confirmation modal user clicks on **Yes* | The modal window closes and the note disappears | SUCCESS |
+| Filtering - User types in a word or phrase and clicks on **Filter** | Only notes that contain the string of characters submitted appear on the page | SUCCESS |
+
 
 
 [Back to Table of Contents](#table-of-contents)
