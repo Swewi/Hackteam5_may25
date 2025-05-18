@@ -90,13 +90,26 @@
         margin-bottom: 20px;
         margin-left: 20px;
         margin-right: 5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    #save_conversation {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
+        font-size: 20px;
+        background-color: #e6f0ff;
+        height: 30px;
+        width: 30px;  
+        border: 2px solid #0c1d2f;
+        border-radius: 5px;
+        margin: 0;
+        /* Remove vertical-align and let flexbox handle alignment */
     }
 </style>
-<div
-    style="position: fixed; top: 66px; left: 0; width: 100%; background-color: #f8f9fa; padding: 10px; border-bottom: 1px solid #ccc; z-index: 1000;">
-    <button id="save_conversation" style="float: right;">Save conversation</button>
-</div>
+
 <h1 style="margin-top: 60px;">Welcome to the Assistant Page</h1>
 <p>Ask a question to get help.</p>
 {% for interaction in history %}
@@ -110,16 +123,19 @@
 {% empty %}
 <p>No previous interactions.</p>
 {% endfor %}
-<!-- <div id="gemini_response"></div> -->
+>
 <div id="user-prompt">
     <input type="text" id="user_input" placeholder="Ask Assistant a question..." style="min-width: 85%;">
     <button id="send_button"><i class="fa fa-paper-plane"></i></button>
+    <span id="save_conversation"><i class="fas fa-save"></i></span>    
 </div>
 
 <div id="saveModal" class="modal"
     style="display: none; position: fixed; z-index: 1050; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
     <div class="modal-content"
         style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 50%;">
+        <span style="font-size: 24px; font-weight: bold;">Save Conversation</span>
+        <br>
         <span id="closeModal"
             style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
         <label for="title">Title:</label>
