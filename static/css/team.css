@@ -20,7 +20,7 @@
 }
 
 .data-border {
-  border: 5px solid #bc5ac1; /* Single color for all borders */
+  border: 5px solid var(--btn-dark-color); /* Single color for all borders */
   box-shadow: inset 1px 1px 3px #333, inset -1px -1px 3px #333, 0px 5px 10px #333;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .close-btn:hover {
-  color: #ff0000;
+  color: var(--btn-dark-color);
 }
 
 .about-links {
@@ -52,7 +52,7 @@
 }
 
 .about-link-icon:hover {
-  color: #bc5ac1;
+  color: var(--menu-color);
 }
 
 .banner {
@@ -149,8 +149,8 @@
   color: #000;
   border: 2px solid #ffffff;
   /* Simplified hover color for all cards */
-  background: #bc5ac1;
-  box-shadow: 0 0 5px #bc5ac1, 0 0 10px #bc5ac1, inset 0 0 5px #bc5ac1,
+  background: var(--btn-light-color);
+  box-shadow: 0 0 5px var(--btn-light-color), 0 0 10px var(--btn-light-color), inset 0 0 5px var(--btn-light-color),
   -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
   -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
 }
@@ -218,8 +218,8 @@
 /* Simplified highlight effect for all cards */
 .card-axis.highlight {
   border: 2px solid #ffffff;
-  background: #bc5ac1;
-  box-shadow: 0 0 5px #bc5ac1, 0 0 10px #bc5ac1, inset 0 0 5px #bc5ac1,
+  background: var(--btn-light-color);
+  box-shadow: 0 0 5px var(--btn-light-color), 0 0 10px var(--btn-light-color), inset 0 0 5px var(--btn-light-color),
   -1px 1px 1px #4a4a4a, -2px 2px 1px #4a4a4a, -3px 3px 1px #323232, -4px 4px 1px #323232,
   -5px 5px 1px #272727, -6px 6px 1px #272727, -7px 7px 1px #000, -10px 10px 10px #000;
 }

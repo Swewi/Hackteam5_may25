@@ -15,7 +15,7 @@
                     data-link1="https://github.com/asyaharoyan"
                     data-link2="https://www.linkedin.com/in/asya-haroyan-688b43159/"
                     data-img="{% static 'images/team/asya.png' %}" data-border-color="#ffd6a5">
-                    <div class="card-axis orange">
+                    <div class="card-axis">
                         <div>
                             <img class="mt-1" src="{% static 'images/team/asya.png' %}" alt="Team member: Asya">
                             <h3 class="title">Asya Haroyan</h3>
@@ -32,7 +32,7 @@
                     data-link1="https://github.com/brandonlea"
                     data-link2="https://www.linkedin.com/in/brandon-lea-price-249129172/"
                     data-img="{% static 'images/team/brandon.png' %}" data-border-color="#fdffb6">
-                    <div class="card-axis yellow">
+                    <div class="card-axis">
                         <div>
                             <img class="mt-1" src="{% static 'images/team/brandon.png' %}"
                                 alt="Team member: Brandon-Lea">
@@ -50,7 +50,7 @@
                     data-link1="https://github.com/Ebuka-martins"
                     data-link2="http://www.linkedin.com/in/ebuka-martins-echesi-msc-b-tech-software-development-a724a86a"
                     data-img="{% static 'images/team/ebuka.png' %}" data-border-color="#caffbf">
-                    <div class="card-axis green">
+                    <div class="card-axis">
                         <div>
                             <img class="mt-1" src="{% static 'images/team/ebuka.png' %}" alt="Team member: Ebuka">
                             <h3 class="title">Ebuka Martins </h3>
@@ -67,7 +67,7 @@
                     data-link1="https://github.com/Ljkkj7"
                     data-link2="https://www.linkedin.com/in/kian-jenkins-421425202/"
                     data-img="{% static 'images/team/kian.png' %}" data-border-color="#9bf6ff">
-                    <div class="card-axis blue">
+                    <div class="card-axis">
                         <div>
                             <img class="mt-1" src="{% static 'images/team/kian.png' %}" alt="Team member: Kian">
                             <h3 class="title">Kian Jenkins</h3>
@@ -84,7 +84,7 @@
                     data-info="Go take a look at my github and then connect on LinkedIn!"
                     data-link1="https://github.com/Swewi" data-link2="https://www.linkedin.com/in/kireebellamy/"
                     data-img="{% static 'images/team/kiree.png' %}" data-border-color="#bdb2ff">
-                    <div class="card-axis indigo">
+                    <div class="card-axis">
                         <div>
                             <img class="mt-1" src="{% static 'images/team/kiree.png' %}" alt="Team member: Kiree">
                             <h3 class="title">Kiree Bellamy</h3>
@@ -101,7 +101,7 @@
                     data-link1="https://github.com/dimitri-edel"
                     data-link2="https://www.linkedin.com/in/dimitri-edel-26a5022a9/"
                     data-img="{% static 'images/team/dimitri.png' %}" data-border-color="#ffc6ff">
-                    <div class="card-axis violet">
+                    <div class="card-axis">
                         <div>
                             <img class="mt-1" src="{% static 'images/team/dimitri.png' %}"
                                 alt="Team member: Dimitri">
@@ -172,7 +172,6 @@
                 const imgSrc = this.getAttribute('data-img');
                 const link1Url = this.getAttribute('data-link1');
                 const link2Url = this.getAttribute('data-link2');
-                const borderColor = this.getAttribute('data-border-color');
 
                 detailsName.textContent = name;
                 detailsBio.textContent = bio;
@@ -180,7 +179,6 @@
                 detailsImg.src = imgSrc;
                 link1.href = link1Url;
                 link2.href = link2Url;
-                detailsSection.style.borderColor = borderColor;
 
                 // Make the details section visible
                 detailsSection.classList.add('visible');
