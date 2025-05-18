@@ -5,16 +5,8 @@
     width: 50%;
 }
 
-/* Signup link */
-#signup-link a {
-    padding: 0.5rem;
-    background-color: var(--btn-light-color);
-    color: var(--font-color);
-    border-radius: 0.5rem;
-    text-decoration: none;
-}
-
-/* Forgot password link */
+/* Signup link, Forgot password link */
+#signup-link a,
 #id_password_helptext a {
     padding: 0.5rem;
     background-color: var(--btn-light-color);
