@@ -9,8 +9,6 @@
   box-shadow: 0 0 20px rgba(0,0,0,0.3); /* Enhanced shadow */
   transition: all 0.3s ease-in-out;
   z-index: 100; /* Increased z-index */
-  border-radius: 10px; /* Added rounded corners */
-  text-align: center; /* Center content */
 }
 
 .details-section.visible {
@@ -19,8 +17,6 @@
 
 .details-section img {
   width: 50%;
-  display: block; /* Keep as block element */
-  border-radius: 5px; /* Rounded corners */
 }
 
 .data-border {
@@ -53,7 +49,6 @@
   font-size: 35px;
   margin-right: 10px;
   text-decoration: none;
-  display: inline-block; /* Ensure they display properly */
 }
 
 .about-link-icon:hover {
@@ -73,10 +68,10 @@
   position: absolute;
   width: 170px;
   height: 10px;
-  top: 50%; /* Changed from 4% to 50% */
-  left: 50%;
-  transform: translate(-50%, -50%) perspective(1000px); /* Added translate for true centering */
+  top: 4%;
+  left: calc(50% - 100px);
   transform-style: preserve-3d;
+  transform: perspective(1000px);
   animation: autoRun 25s linear infinite;
   z-index: 1;
 }
@@ -103,7 +98,7 @@
 .banner .slider .item {
     position: absolute;
     inset: 0 0 0 0;
-    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(650px); /* Increased translateZ to make the circle larger */
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(550px);
     transition: transform 1s;
 }
   
@@ -205,12 +200,10 @@
 .spacing .polariod .card-axis .content h3 {
   justify-content: start;
   text-transform: uppercase;
-  font-family: Ubuntu;
 }
   
 .spacing .polariod .card-axis .content p {
   font-size: 20px;
-  font-family: Ubuntu;
 }
   
 .spacing .polariod .card-axis .title {
@@ -233,50 +226,9 @@
 
 /* Removed all individual .card-axis.color.highlight blocks */
 
-@media (max-width: 1200px) {
-  .spacing .polariod {
-    width: clamp(300px, 30vw, 600px);
-    height: clamp(300px, 30vw, 600px);
-  }
-}
-
 @media (max-width: 991px) { 
   .banner .slider .item {
-    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(400px);
-  }
-  
-  .spacing .polariod {
-    width: clamp(200px, 30vw, 400px);
-    height: clamp(200px, 30vw, 400px);
-  }
-  
-  .light {
-    width: 120px;
-    height: 120px;
-  }
-}
-
-@media (max-width: 700px) { 
-  .prideful h2 {
-    font-size: 300%;
-  }
-  
-  .details-section {
-    width: 95%;
-  }
-}
-
-@media (max-width: 400px) { 
-  .prideful {
-    margin-top: 63vh;
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(200px);
   }
 
-  .prideful h2 {
-    font-size: 200%;
-  }
-  
-  .light {
-    width: 90px;
-    height: 90px;
-  }
 }
