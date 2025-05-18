@@ -5,6 +5,21 @@
     width: 50%;
 }
 
+.btn-custom-dark {
+    background-color: var(--btn-light-color);
+    color: var(--font-text);
+}
+
+/* Signup link */
+#signup-link a {
+    padding: 0.5rem;
+    background-color: var(--btn-light-color);
+    color: var(--font-color);
+    border-radius: 0.5rem;
+    text-decoration: none;
+}
+
+/* Forgot password link */
 /* Signup link, Forgot password link */
 #signup-link a,
 #id_password_helptext a {
@@ -20,6 +35,11 @@
 #id_password_helptext a:hover,
 #signup-link a:hover, #signup-link a:focus {
     background-color: var(--btn-hover);
+}
+
+.btn-custom-dark:hover, .btn-custom-dark:focus {
+    background-color: var(--btn-dark-color);
+    color: var(--footer-text);
 }
 
 /* Media queries */

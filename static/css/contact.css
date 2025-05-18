@@ -1,0 +1,27 @@
+#contactForm input,
+  #contactForm textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  #contactForm input,
+  #contactForm textarea {
+    width: 100%;
+    border: 1px solid var(--menu-color);
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    background-color: #ffffff;
+    font-size: 1rem;
+  }
+
+  #contactForm input:focus,
+  #contactForm textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.15rem rgba(255, 0, 157, 0.25);
+    background-color: #fff;
+  }
+
+  #contactForm p {
+    margin-bottom: 1rem;
+  }

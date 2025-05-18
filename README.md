@@ -158,9 +158,9 @@ erDiagram
 
 ## Wireframes
 <details><summary>Wireframes</summary>
-* *Add wireframes here.  Since I cannot directly create images, you would add image links or embed images here.*
-* *Example:*
-    * *![Wireframe of the main page](link_to_your_wireframe_image.png)*
+* *Mobile & Desktop:*
+    * *![Mobile Wireframe](static/images/wireframes/Mobile.png)*
+    * *![Desktop Wireframe](static/images/wireframes/Desktop.png)*
 * [Back to Table of Contents](#table-of-contents)
 </details>
 
