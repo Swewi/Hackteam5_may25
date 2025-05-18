@@ -43,7 +43,7 @@ footer {
 
 #logo img {
     width: auto;
-    max-height: 3rem;
+    max-height: 2rem;
 }
 
 .social-icons, .footer-text {
@@ -79,4 +79,7 @@ footer a {
         margin: 1rem;
     }
 
+    #logo img {
+        max-height: 3rem;
+    }
 }
