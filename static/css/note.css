@@ -143,7 +143,7 @@ justify-content: center;
 .note-tile {
 width: 150px;
 height: 150px;
-background: #ffffff;
+background: var(--btn-light-color);
 border-radius: 8px;
 display: block;
 text-align: center;
@@ -157,7 +157,7 @@ padding: 10px;
 
 .note-tile:hover {
 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-background: #e0e7ff;
+background: var(--btn-hover);
 }
 
 /* Delete icon */
@@ -198,4 +198,16 @@ width: 300px;
 /* Back button */
 .back-button {
 margin-bottom: 1rem;
+}
+
+/* Custom button */
+.btn-filter {
+    background-color: var(--btn-light-color);
+    color: var(--font-color);
+}
+
+/* Hover and Focus Effect */
+.btn-filter:hover, .btn-filter:focus {
+    background-color: var(--btn-hover);
+    color: var(--font-color);
 }
