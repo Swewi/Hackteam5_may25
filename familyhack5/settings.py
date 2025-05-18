@@ -99,6 +99,7 @@ INSTALLED_APPS = [
     'assistant',
     'notes',
     'team',
+    'contact',
     
     # Baton admin app (must be after all apps)
     'baton.autodiscover',
@@ -248,7 +249,6 @@ cloudinary.config(
     api_secret=os.getenv('CLOUDINARY_API_SECRET', ''),
     secure=True
 )
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
