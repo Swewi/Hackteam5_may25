@@ -6,32 +6,41 @@
         <div class="modal-content p-4 text-center">
             <p>Do you really want to delete the note?</p>
             <div class="mt-4">
-                <button id="modalYesBtn" class="btn btn-danger me-3">Yes</button>
-                <button id="modalNoBtn" class="btn btn-secondary">No</button>
+                <button id="modalYesBtn" class="btn btn-filter me-3">Yes</button>
+                <button id="modalNoBtn" class="btn btn-custom-dark">No</button>
             </div>
         </div>
     </div>
 </div>
-<div class="content-container">
-    <h2>My Notes</h2>
-    <form method="get" class="filter-form">
-        <input type="text" name="q" placeholder="Filter notes by title, question, or answer..." 
-               value="{{ query|default:'' }}" class="form-control filter-input d-inline-block">
-        <button type="submit" class="btn btn-primary">Filter</button>
-    </form>
-    <div class="notes-tiles-container">
-        {% for note in notes %}
-        <div class="note-tile">
-            <div class="delete-icon">
-                <i class="fas fa-trash"></i>
-                <span class="delete-note-id d-none">{{ note.id }}</span>
+
+<div class="container-md py-4 h-100">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="text-background rounded-5 padding-2">
+                <h2 class="text-center pb-4">My Notes</h2>
+
+                <form method="get" class="filter-form">
+                    <input type="text" name="q" placeholder="Filter notes by title, question, or answer..." 
+                        value="{{ query|default:'' }}" class="form-control filter-input d-inline-block">
+                    <button type="submit" class="btn btn-filter">Filter</button>
+                </form>
+
+                <div class="row justify-content-center mt-4 gap-4">
+                    {% for note in notes %}
+                    <div class="note-tile col-12 col-sm-6 col-md-4 col-lg-3">
+                        <div class="delete-icon">
+                            <i class="fas fa-trash"></i>
+                            <span class="delete-note-id d-none">{{ note.id }}</span>
+                        </div>
+                        <span class="note-id d-none">{{ note.id }}</span>
+                        <div>{{ note.title }}</div>
+                    </div>
+                    {% empty %}
+                    <p>No notes available.</p>
+                    {% endfor %}
+                </div>
             </div>
-            <span class="note-id d-none">{{ note.id }}</span>
-            <div>{{ note.title }}</div>
         </div>
-        {% empty %}
-        <p>No notes available.</p>
-        {% endfor %}
     </div>
 </div>
 <script>
