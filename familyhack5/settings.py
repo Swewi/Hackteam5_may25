@@ -295,3 +295,6 @@ ACCOUNT_SIGNUP_FIELDS = ['username*', 'password1*', 'password2*']
 # Redirect to home page after login or signup
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_REDIRECT_URL = '/'
+
+# Fake email sending
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

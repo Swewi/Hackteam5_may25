@@ -45,5 +45,3 @@ def contact(request):
         "contact/contact.html",
         {"contact_form": contact_form},
     )
-
-# Create your views here.
