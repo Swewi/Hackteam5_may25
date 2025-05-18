@@ -99,10 +99,10 @@ erDiagram
 
     User ||--o{ Note : owns
     User ||--o{ Interaction : has
-    Note ||--|| Interaction : start_id (interaction_start_id)
-    Note ||--|| Interaction : end_id (interaction_end_id)
-    Note ||--o{ Interaction : references (via start_id to end_id)
-    Interaction }o--|| User : belongs_to (usr)
+    Note ||--|| Interaction : start
+    Note ||--|| Interaction : end
+    Note ||--o{ Interaction : references
+    Interaction }o--|| User : belongs_to
 ```
 
 - Only the User model is shown from external packages.
