@@ -1,0 +1,35 @@
+[33mea407e5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32masya[m[33m, [m[1;31morigin/asya[m[33m)[m HEAD@{0}: commit: change some small styles in contact page and chatbot
+[33m435740d[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{1}: pull origin main: Fast-forward
+[33m75e0960[m HEAD@{2}: reset: moving to HEAD
+[33m75e0960[m HEAD@{3}: rebase (finish): returning to refs/heads/asya
+[33m75e0960[m HEAD@{4}: rebase (continue): styled contuct page
+[33mcb8734a[m HEAD@{5}: pull --rebase origin main (start): checkout cb8734a8c5cc62b9d785bb179301da8f7cb2b77d
+[33m9d56ddc[m HEAD@{6}: rebase (abort): returning to refs/heads/asya
+[33mcb8734a[m HEAD@{7}: pull --rebase origin main (start): checkout cb8734a8c5cc62b9d785bb179301da8f7cb2b77d
+[33m9d56ddc[m HEAD@{8}: commit: styled contuct page
+[33ma0c8c88[m HEAD@{9}: commit: Add crf hosts in settings
+[33m7aa448d[m HEAD@{10}: pull origin main: Fast-forward
+[33mc920e38[m HEAD@{11}: commit: changed some css
+[33m1b3ca0c[m HEAD@{12}: pull origin main: Fast-forward
+[33m70902e6[m HEAD@{13}: pull origin main: Fast-forward
+[33m95444b4[m HEAD@{14}: commit: Change footer, add styling for the texts
+[33m8d51641[m HEAD@{15}: commit: Add some css for homepage
+[33m0f80c6a[m HEAD@{16}: commit: Add some css for homepage
+[33mde6ece4[m HEAD@{17}: pull origin main: Fast-forward
+[33m1431b5f[m HEAD@{18}: pull origin main: Fast-forward
+[33mf183a05[m HEAD@{19}: pull origin main: Fast-forward
+[33m0fb5844[m HEAD@{20}: commit: Added CSS in stylesheet and changed base HTML slightly.
+[33md472a52[m HEAD@{21}: pull origin main: Fast-forward
+[33m360d839[m HEAD@{22}: commit: Added pictures for UI
+[33m708a78f[m HEAD@{23}: pull origin main: Fast-forward
+[33mb5cf4d7[m HEAD@{24}: pull origin main: Fast-forward
+[33m73d6eec[m HEAD@{25}: pull origin main: Fast-forward
+[33m788e2eb[m HEAD@{26}: pull origin main: Fast-forward
+[33maf2b722[m HEAD@{27}: commit: Initial commit
+[33m12309d0[m HEAD@{28}: pull origin main: Fast-forward
+[33m36955e8[m[33m ([m[1;32mmain[m[33m)[m HEAD@{29}: reset: moving to HEAD
+[33m36955e8[m[33m ([m[1;32mmain[m[33m)[m HEAD@{30}: reset: moving to HEAD
+[33m36955e8[m[33m ([m[1;32mmain[m[33m)[m HEAD@{31}: checkout: moving from main to asya
+[33m36955e8[m[33m ([m[1;32mmain[m[33m)[m HEAD@{32}: checkout: moving from main to main
+[33m36955e8[m[33m ([m[1;32mmain[m[33m)[m HEAD@{33}: branch: Reset to origin/main
+[33m36955e8[m[33m ([m[1;32mmain[m[33m)[m HEAD@{34}: clone: from https://github.com/Swewi/Hackteam5_may25.git
