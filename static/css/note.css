@@ -177,3 +177,13 @@
     background-color: var(--btn-hover);
     color: var(--font-color);
 }
+
+.back-button {
+    background-color: var(--btn-dark-color);
+    text-decoration: none;
+}
+
+.back-button:hover, .back-button:focus {
+    background-color: var(--btn-hover);
+    color: var(--font-color);
+}
