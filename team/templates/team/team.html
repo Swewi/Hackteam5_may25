@@ -1,59 +1,203 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Our Team - FamilyHack5{% endblock %}
+{% block title %}About{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <!-- Page Header -->
-    <div class="row mb-5 text-center">
-        <div class="col-12">
-            <h1 class="display-4 fw-bold mb-3">The Digital Relatives</h1>
-            <p class="lead text-muted">We are the talented developers behind our assistant uncleTech</p>
-        </div>
-    </div>
-
-    <!-- Team Members Grid -->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {% for member in team_members %}
-        <div class="col">
-            <div class="card h-100 border-0 shadow-sm team-member-card">
-                <!-- Photo or placeholder -->
-                {% if member.photo %}
-                <img src="{{ member.photo.url }}" class="card-img-top" alt="{{ member.name }}"
-                    style="height: 250px; object-fit: cover;">
-                {% else %}
-                <div class="d-flex align-items-center justify-content-center bg-light py-5">
-                    <i class="fas fa-user-circle team-photo-placeholder"></i>
-                </div>
-                {% endif %}
-
-                <!-- Member Info -->
-                <div class="card-body team-card-body">
-                    <h3 class="card-title fw-bold">{{ member.name }}</h3>
-                    <span class="badge bg-primary mb-2">{{ member.role }}</span>
-                    <p class="card-text text-muted">{{ member.bio }}</p>
-                </div>
-
-                <!-- Social Links -->
-                <div class="card-footer bg-white border-0 pb-3">
-                    <div class="d-flex justify-content-center gap-2">
-                        <a href="{{ member.github_url }}" class="btn btn-sm btn-outline-dark rounded-pill px-3"
-                            target="_blank">
-                            <i class="fab fa-github me-1"></i> GitHub
-                        </a>
-
-                        {% if member.linkedin_url %}
-                        <a href="{{ member.linkedin_url }}" class="btn btn-sm btn-outline-primary rounded-pill px-3"
-                            target="_blank">
-                            <i class="fab fa-linkedin-in me-1"></i> LinkedIn
-                        </a>
-                        {% endif %}
+<section class="container-fluid about-banner text-center mt-5">
+    <h1>Meet The Digital Relatives!</h1>
+</section>
+<div class="banner">
+    <!-- Changed quantity from 7 to 6 -->
+    <div class="slider" style="--quantity: 6">
+        <div class="item" style="--position: 6">
+            <div class="spacing">
+                <div class="polariod" data-name="Asya Haroyan" data-bio="Don't know what to put here"
+                    data-link1="https://github.com/asyaharoyan"
+                    data-link2="https://www.linkedin.com/in/asya-haroyan-688b43159/"
+                    data-img="{% static 'images/team/nobody.jpg' %}" data-border-color="#ffd6a5">
+                    <div class="card-axis orange">
+                        <div>
+                            <img class="mt-1" src="{% static 'images/team/nobody.jpg' %}" alt="Team member: Asya">
+                            <h3 class="title">Asya Haroyan</h3>
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
+        <div class="item" style="--position: 5">
+            <div class="spacing">
+                <div class="polariod" data-name="Brandon-Lea Price" data-bio="Don't know what to put here."
+                    data-info="Go take a look at my github and then connect on LinkedIn!"
+                    data-link1="https://github.com/brandonlea"
+                    data-link2="https://www.linkedin.com/in/brandon-lea-price-249129172/"
+                    data-img="{% static 'images/team/nobody.jpg' %}" data-border-color="#fdffb6">
+                    <div class="card-axis yellow">
+                        <div>
+                            <img class="mt-1" src="{% static 'images/team/nobody.jpg' %}"
+                                alt="Team member: Brandon-Lea">
+                            <h3 class="title">Brandon-Lea Price</h3>
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" style="--position: 4">
+            <div class="spacing">
+                <div class="polariod" data-name="Ebuka Martins" data-bio="Not sure what to put here." 
+                    data-info="Go take a look at my github and then connect on LinkedIn!" 
+                    data-link1="https://github.com/Ebuka-martins"
+                    data-link2="http://www.linkedin.com/in/ebuka-martins-echesi-msc-b-tech-software-development-a724a86a"
+                    data-img="{% static 'images/team/nobody.jpg' %}" data-border-color="#caffbf">
+                    <div class="card-axis green">
+                        <div>
+                            <img class="mt-1" src="{% static 'images/team/nobody.jpg' %}" alt="Team member: Ebuka">
+                            <h3 class="title">Ebuka Martins </h3>
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" style="--position: 3">
+            <div class="spacing">
+                <div class="polariod" data-name="Kian Jenkins" data-bio="Don't know what to put here."
+                    data-info="Go take a look at my github and then connect on LinkedIn!"
+                    data-link1="https://github.com/Ljkkj7"
+                    data-link2="https://www.linkedin.com/in/kian-jenkins-421425202/"
+                    data-img="{% static 'images/team/nobody.jpg' %}" data-border-color="#9bf6ff">
+                    <div class="card-axis blue">
+                        <div>
+                            <img class="mt-1" src="{% static 'images/team/nobody.jpg' %}" alt="Team member: Kian">
+                            <h3 class="title">Kian Jenkins</h3>
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" style="--position: 2">
+            <div class="spacing">
+                <div class="polariod" data-name="Kiree Bellamy"
+                    data-bio="Swedish based, Kiwi coder, I do my best to support the team so we can make the best product we can."
+                    data-info="Go take a look at my github and then connect on LinkedIn!"
+                    data-link1="https://github.com/Swewi" data-link2="https://www.linkedin.com/in/kireebellamy/"
+                    data-img="{% static 'images/team/kiree.jpg' %}" data-border-color="#bdb2ff">
+                    <div class="card-axis indigo">
+                        <div>
+                            <img class="mt-1" src="{% static 'images/team/nobody.jpg' %}" alt="Team member: Kiree">
+                            <h3 class="title">Kiree Bellamy</h3>
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" style="--position: 1">
+            <div class="spacing">
+                <div class="polariod" data-name="Dimitri Edel" data-bio="Not sure what to put here."
+                    data-info="Go take a look at my github and then connect on LinkedIn!"
+                    data-link1="https://github.com/dimitri-edel"
+                    data-link2="https://www.linkedin.com/in/dimitri-edel-26a5022a9/"
+                    data-img="{% static 'images/team/nobody.jpg' %}" data-border-color="#ffc6ff">
+                    <div class="card-axis violet">
+                        <div>
+                            <img class="mt-1" src="{% static 'images/team/nobody.jpg' %}"
+                                alt="Team member: Dimitri">
+                            <h3 class="title">Dimitri Edel</h3>
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<div class="light">
+    <img src="{% static 'images/team-logo.png' %}" alt="team logo" class="light-img">
+</div>
+<div class="details-section data-border" id="details-section">
+    <button class="close-btn">x</button>
+    <h2 id="details-name"></h2>
+    <img id="details-img" src="" alt="Team member details">
+    <p id="details-bio"></p>
+    <p id="details-info"></p>
+    <div id="details-links">
+        <a id="link1" class="about-link-icon" href="#" target="_blank"><i class="fab fa-github"></i></a>
+        <a id="link2" class="about-link-icon" href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const light = document.querySelector('.light');
+        const cardAxes = document.querySelectorAll('.card-axis');
+
+        light.addEventListener('mouseover', function () {
+            cardAxes.forEach(card => {
+                card.classList.add('highlight');
+            });
+        });
+
+        light.addEventListener('mouseout', function () {
+            cardAxes.forEach(card => {
+                card.classList.remove('highlight');
+            });
+        });
+
+        const polaroids = document.querySelectorAll('.polariod');
+        const detailsSection = document.getElementById('details-section');
+        const detailsName = document.getElementById('details-name');
+        const detailsImg = document.getElementById('details-img');
+        const detailsBio = document.getElementById('details-bio');
+        const detailsInfo = document.getElementById('details-info');
+        const link1 = document.getElementById('link1');
+        const link2 = document.getElementById('link2');
+        const closeBtn = document.querySelector('.close-btn');
+
+        // Debug to check if polaroids are found
+        console.log("Found polaroids:", polaroids.length);
+
+        polaroids.forEach(polaroid => {
+            polaroid.addEventListener('click', function () {
+                // Debug to check if click event fires
+                console.log("Polaroid clicked:", this.getAttribute('data-name'));
+                
+                const name = this.getAttribute('data-name');
+                const bio = this.getAttribute('data-bio');
+                const info = this.getAttribute('data-info');
+                const imgSrc = this.getAttribute('data-img');
+                const link1Url = this.getAttribute('data-link1');
+                const link2Url = this.getAttribute('data-link2');
+                const borderColor = this.getAttribute('data-border-color');
+
+                detailsName.textContent = name;
+                detailsBio.textContent = bio;
+                detailsInfo.textContent = info || ""; // Handle if info is undefined
+                detailsImg.src = imgSrc;
+                link1.href = link1Url;
+                link2.href = link2Url;
+                detailsSection.style.borderColor = borderColor;
+
+                // Make the details section visible
+                detailsSection.classList.add('visible');
+            });
+        });
+
+        // Hide details section if close button is clicked
+        closeBtn.addEventListener('click', function () {
+            detailsSection.classList.remove('visible');
+        });
+
+        // Hide details section if clicked outside
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('.polariod') && !event.target.closest('#details-section')) {
+                detailsSection.classList.remove('visible');
+            }
+        });
+    });
+</script>
+
 {% endblock %}
