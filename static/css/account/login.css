@@ -1,36 +1,31 @@
 /* Login button */
 .btn-custom {
-    background-color: #e1c1c0;
-    color: #202020;
+    background-color: var(--btn-light-color);
+    color: var(--font-color);
     width: 50%;
-}
-
-.btn-custom:hover {
-    background-color: #d9d7c4;
 }
 
 /* Signup link */
 #signup-link a {
     padding: 0.5rem;
-    background-color: #e1c1c0;
-    color: #202020;
+    background-color: var(--btn-light-color);
+    color: var(--font-color);
     border-radius: 0.5rem;
     text-decoration: none;
-}
-
-#signup-link a:hover {
-    background-color: #d9d7c4;
 }
 
 /* Forgot password link */
 #id_password_helptext a {
     padding: 0.5rem;
-    background-color: #e1c1c0;
-    color: #202020;
+    background-color: var(--btn-light-color);
+    color: var(--font-color);
     border-radius: 0.5rem;
     text-decoration: none;
 }
 
-#id_password_helptext a:hover {
-    background-color: #d9d7c4;
+/* Hover effect */
+.btn-custom:hover,
+#id_password_helptext a:hover,
+#signup-link a:hover {
+    background-color: var(--btn-hover);
 }

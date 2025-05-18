@@ -10,6 +10,8 @@
     --background: #F0EDEC;
     --footer-text: #f5f5f5;
     --font-color: #202020;
+    --btn-light-color: #d8acba;
+    --btn-hover: #d9d7c4;
 }
 
 html, body {
