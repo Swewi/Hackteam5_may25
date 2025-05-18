@@ -5,7 +5,6 @@
     width: 50%;
 }
 
-<<<<<<< HEAD
 .btn-custom-dark {
     background-color: var(--btn-light-color);
     color: var(--font-text);
@@ -21,10 +20,8 @@
 }
 
 /* Forgot password link */
-=======
 /* Signup link, Forgot password link */
 #signup-link a,
->>>>>>> a16d129c660cd31f362f673b9ec413493d2e30a4
 #id_password_helptext a {
     padding: 0.5rem;
     background-color: var(--btn-light-color);
