@@ -136,10 +136,19 @@ erDiagram
 | Saving a conversation - In the modal the user enters a title and clicks on 'OK' | A message appears that informs the user that the conversation has been successfully saved and 3 seconds later they get redirected to the notes page | SUCCESS |
 
 
+[Back to Table of Contents](#table-of-contents)
+
+### NOTES
+
+| TEST ACTION                                                                    | EXPECTATION                                                                                               | RESULT    |
+| :----------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------- | :-------- |
+| User clicks on one of the notes | A page with the chat history that was saved in that note opens | SUCCESS |
+| Deleting a note - User clicks on the delete icon of a note | A modal window appears asking the user to confirm the delete | SUCCESS |
+| Deleting a note - In confirmation modal user clicks on **No** | The modal window closes and the note remains intact | SUCCESS |
+| Deleting a note - In confirmation modal user clicks on **Yes* | The modal window closes and the note disappears | SUCCESS |
 
 
 [Back to Table of Contents](#table-of-contents)
-                        
 </details>
 
 
