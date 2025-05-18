@@ -11,6 +11,7 @@
 * [Tech Stack](#tech-stack)
 * [Features](#features)
 * [How to Use](#how-to-use)
+* [Entity Relationship Diagram](#entity-relationship-diagram)
 * [Manual Testing](#manual-testing)
 * [Wireframes](#wireframes)
 * [User Stories](#user-stories)
@@ -25,6 +26,7 @@ For example, a user could ask:
 
 * "How do I reset my WiFi?"
 * "How do I download Facebook?"
+* [Back to Table of Contents](#table-of-contents)
 </details>
 
 ## Tech Stack
@@ -32,6 +34,7 @@ For example, a user could ask:
 * **Backend:** Django
 * **Frontend:** HTML, CSS, JavaScript, Bootstrap
 * **AI:** Google Generative Language AI (Model: gemini-1.5-flash-002)
+* [Back to Table of Contents](#table-of-contents)
 </details>
 
 ## Features
@@ -39,6 +42,7 @@ For example, a user could ask:
 * AI-powered question answering: Users can type in their tech support questions and receive AI-generated responses.
 * User-friendly interface: The application is designed to be simple and easy to use, especially for elderly users.
 * Web-based:  Accessible from any device with a web browser.
+* [Back to Table of Contents](#table-of-contents)
 </details>
 
 ## How to Use
@@ -61,6 +65,50 @@ For example, a user could ask:
 3.  **Usage**
     * Once the application is running, users can type their tech support questions into the input field on the main page.
     * The AI-generated response will be displayed on the page.
+* [Back to Table of Contents](#table-of-contents)
+</details>
+
+## Entity Relationship Diagram
+<details><summary>Models</summary>
+```mermaid
+erDiagram
+    User {
+        int id
+        string username
+        string password
+    }
+    
+    Note {
+        int id
+        string title
+        datetime created_at
+        int interaction_start_id
+        int interaction_end_id
+        int user_id
+    }
+    
+    Interaction {
+        int id
+        string question
+        string answer
+        float timestamp
+        int usr_id
+    }
+
+    User ||--o{ Note : owns
+    User ||--o{ Interaction : has
+    Note ||--|| Interaction : start_id (interaction_start_id)
+    Note ||--|| Interaction : end_id (interaction_end_id)
+    Note ||--o{ Interaction : references (via start_id to end_id)
+    Interaction }o--|| User : belongs_to (usr)
+```
+
+- Only the User model is shown from external packages.
+- Note references a range of Interactions (from interaction_start_id to interaction_end_id).
+- Each Interaction belongs to a User.
+- Each Note belongs to a User.
+
+* [Back to Table of Contents](#table-of-contents)
 </details>
 
 ## Manual Testing
@@ -71,24 +119,45 @@ For example, a user could ask:
 | TEST ACTION                                                                    | EXPECTATION                                                                                               | RESULT    |
 | :----------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------- | :-------- |
 | User opens the landing page URL                                                | The landing page is displayed with a title, introduction, and a call to action.                            | SUCCESS   |
-| User interacts with the input field.                                            | The input field is responsive and allows the user to type their tech support question.                   | SUCCESS   |
 | User views the page on different screen sizes (desktop, mobile)               | The layout is responsive and content is displayed correctly.                                               | SUCCESS   |
 | User checks for broken links/images.                                            | All links are functional, and all images are displayed correctly.                                           | SUCCESS   |
 
-### AI Response
+### ASSISTANT
 
 | TEST ACTION                                                                    | EXPECTATION                                                                                               | RESULT    |
 | :----------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------- | :-------- |
-| User enters a valid tech support question (e.g., "How do I reset my WiFi?")    | The AI generates a relevant and helpful response.                                                      | SUCCESS   |
-| User enters an invalid question or gibberish.                                   | The AI provides a graceful error message or a general help response.                                        | SUCCESS   |
-| User enters a question with spelling mistakes.                                  | The AI is able to understand the intent and provide a relevant answer.                                     | SUCCESS   |
+| Sendiing an empty message | User sees an message that informs them that they first need to type in a message before sending it | SUCCESS |
+| Sending a message - Click on send button| User sees loading spinner while the message is being processed | SUCCESS |
+| Receiving a response | The message the user has sent appears in a speech bubble, followed by a speech bubble that contains the answer from the Assistant | SUCCESS |
+| Click on clear chat history button | All the previous chat bubbles disappear | SUCCESS |
+| Saving a conversation - Click on the dedicated button | A modal for saving the conversation appears | SUCCESS |
+| Saving a conversation - In the modal the ttile field is empty and the user clicks on the 'OK' button | A vlidation message appears that reminds them that the title cannot be empty | SUCCESS |
+| Saving a conversation - In the modal the user clicks on 'Cancel' | The modal closes | SUCCESS |
+| Saving a conversation - In the modal the user enters a title and clicks on 'OK' | A message appears that informs the user that the conversation has been successfully saved and 3 seconds later they get redirected to the notes page | SUCCESS |
+
+
+[Back to Table of Contents](#table-of-contents)
+
+### NOTES
+
+| TEST ACTION                                                                    | EXPECTATION                                                                                               | RESULT    |
+| :----------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------- | :-------- |
+| User clicks on one of the notes | A page with the chat history that was saved in that note opens | SUCCESS |
+| Deleting a note - User clicks on the delete icon of a note | A modal window appears asking the user to confirm the delete | SUCCESS |
+| Deleting a note - In confirmation modal user clicks on **No** | The modal window closes and the note remains intact | SUCCESS |
+| Deleting a note - In confirmation modal user clicks on **Yes* | The modal window closes and the note disappears | SUCCESS |
+
+
+[Back to Table of Contents](#table-of-contents)
 </details>
+
 
 ## Wireframes
 <details><summary>Wireframes</summary>
 * *Mobile & Desktop:*
     * *![Mobile Wireframe](static/images/wireframes/Mobile.png)*
     * *![Desktop Wireframe](static/images/wireframes/Desktop.png)*
+* [Back to Table of Contents](#table-of-contents)
 </details>
 
 ## User Stories
@@ -98,6 +167,7 @@ For example, a user could ask:
 * As a user, I want the application to be easy to use, even if I am not very tech-savvy.
 * As a user, I want the application to be accessible from any device with a web browser.
 * As a developer, I want to use a reliable AI model to generate accurate responses.
+* [Back to Table of Contents](#table-of-contents)
 </details>
 
 ## Future Enhancements
@@ -108,6 +178,7 @@ For example, a user could ask:
 * User accounts and history.
 * Feedback mechanism for users to rate the helpfulness of the responses.
 * Multi-language support.
+* [Back to Table of Contents](#table-of-contents)
 </details>
 
 ## Credits
