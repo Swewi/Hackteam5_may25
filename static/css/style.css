@@ -86,6 +86,20 @@ footer a {
     color: var(--font-color);
 }
 
+.footer-title {
+    font-weight: bold;
+}
+
+/* Github link focus and hover effect */
+.github-link a:hover {
+    color: var(--btn-dark-color);
+    font-size: 1.2rem;
+}
+
+.github-link a:focus {
+    color: var(--btn-dark-color);
+}
+
 /* For bigger screens */
 
 @media screen and (min-width: 767px) {
