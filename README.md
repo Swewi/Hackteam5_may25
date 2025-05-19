@@ -162,10 +162,10 @@ erDiagram
 
 
 ## Wireframes
-<details><summary>Wireframes</summary>
-* *Mobile & Desktop:*
-    * *![Mobile Wireframe](static/images/wireframes/Mobile.png)*
-    * *![Desktop Wireframe](static/images/wireframes/Desktop.png)*
+<details><summary>Mobile & Desktop</summary>
+
+![Mobile Wireframe](static/images/wireframes/Mobile.png)*
+![Desktop Wireframe](static/images/wireframes/Desktop.png)*
 
 [Back to Table of Contents](#table-of-contents)
 </details>
