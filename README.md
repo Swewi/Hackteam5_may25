@@ -67,6 +67,22 @@ The application suses Google Gemin's LLM in the assistant app.
 7. Create and download Service Account Key
 8. Use the downloaded JSON file in your Django Project inside .env under the key **GOOGLE_APPLICATION_CREDENTIALS="path/to/the/file"**
 
+In order to receive the aswers from the AI in a specific format we attached a preamble to each request.
+
+```python
+
+    question_preamble = (
+                "The user asking the question is not technically inclined. If it is a technical question, then format the answer in a way that is easy to understand. "
+                "And if answering the question rerquires several steps, then break it down into smaller steps. "
+                "And give the user step-by-step instructions. "
+                "If the question is not technical, then answer it in a friendly and helpful manner. "
+                "Here is what the user said: "
+            )
+            prompt = question_preamble + user_question
+            ai_response = get_gemini_response(prompt)
+
+```
+
 [Back to Table of Contents](#table-of-contents)
 
 <details><summary>Details</summary>
