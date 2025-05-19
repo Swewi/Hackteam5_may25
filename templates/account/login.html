@@ -29,7 +29,7 @@
                     {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
-                    <button class="btn btn-custom rounded-2" type="submit">{% trans "Login" %}</button>
+                    <button class="btn btn-light w-50 rounded-2" type="submit">{% trans "Login" %}</button>
                 </form>
 
                 {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}

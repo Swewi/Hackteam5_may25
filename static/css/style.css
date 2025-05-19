@@ -25,6 +25,30 @@ body {
     font-family: var(--main-font);
 }
 
+/* Buttons */
+.btn-light {
+    background-color: var(--btn-light-color);
+    color: var(--font-color);
+    border: 1px solid var(--btn-light-color);
+}
+
+.btn-light:hover, .btn-light:focus {
+    background-color: var(--btn-hover);
+    border: 1px solid var(--btn-hover);
+}
+
+.btn-dark {
+    background-color: var(--btn-dark-color);
+    color: var(--footer-text);
+    border: 1px solid var(--btn-dark-color);
+}
+
+.btn-dark:hover, .btn-dark:focus {
+    background-color: var(--btn-light-color);
+    color: var(--font-color);
+    border: 1px solid var(--btn-light-color);
+}
+
 /* Main */
 main {
     flex: 1 0 auto;
