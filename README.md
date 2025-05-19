@@ -202,5 +202,6 @@ erDiagram
 ## Credits
 <details><summary>Details</summary>
 
-* This project was created by Team5
+* This project was created by Team5 - The Digital Relatives.
+* Our families for allowing us the time to join the hackathon.
 </details>
