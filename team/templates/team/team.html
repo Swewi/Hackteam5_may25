@@ -4,132 +4,167 @@
 {% block title %}About{% endblock %}
 
 {% block content %}
-<section class="container-fluid about-banner text-center mt-5">
-    <h1>Meet the team members from</h1>
-</section>
-<div class="banner">
-    <div class="slider" style="--quantity: 6"> <!-- Adjust the number of items here -->
-        <div class="item" style="--position: 6">
+<section class="container-md py-4">
+    <div class="text-background rounded-5 padding-2">
+      <div class="text-center">
+        <h3>Meet the team members from</h3> <br />
+      </div>
+  
+      <div class="banner mt-4">
+        <div class="slider" style="--quantity: 6">
+          <!-- Team Member: Asya -->
+          <div class="item" style="--position: 6">
             <div class="spacing">
-                <div class="polariod" data-name="Asya Haroyan" data-bio="Swedish based UX/UI designer of great skill"
-                    data-link1="https://github.com/asyaharoyan"
-                    data-link2="https://www.linkedin.com/in/asya-haroyan-688b43159/"
-                    data-img="{% static 'images/team/asya.png' %}" data-border-color="#ffd6a5">
-                    <div class="card-axis">
-                        <div>
-                            <img class="mt-1" src="{% static 'images/team/asya.png' %}" alt="Team member: Asya">
-                            <h3 class="title">Asya Haroyan</h3>
-                            <i class="fas fa-sync-alt"></i>
-                        </div>
-                    </div>
+              <div class="polariod"
+                data-name="Asya Haroyan"
+                data-bio="Swedish based UX/UI designer of great skill"
+                data-link1="https://github.com/asyaharoyan"
+                data-link2="https://www.linkedin.com/in/asya-haroyan-688b43159/"
+                data-img="{% static 'images/team/asya.png' %}"
+                data-border-color="#ffd6a5">
+                <div class="card-axis">
+                  <div>
+                    <img class="mt-1" src="{% static 'images/team/asya.png' %}" alt="Team member: Asya">
+                    <h3 class="title">Asya Haroyan</h3>
+                    <i class="fas fa-sync-alt"></i>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="item" style="--position: 5">
+          </div>
+  
+          <!-- Team Member: Brandon -->
+          <div class="item" style="--position: 5">
             <div class="spacing">
-                <div class="polariod" data-name="Brandon-Lea Price" data-bio="UK based Full Stack developer, always looking for a challenge and learning new skills everyday.."
-                    data-info="Go take a look at my github and then connect on LinkedIn!"
-                    data-link1="https://github.com/brandonlea"
-                    data-link2="https://www.linkedin.com/in/brandon-lea-price-249129172/"
-                    data-img="{% static 'images/team/brandon.png' %}" data-border-color="#fdffb6">
-                    <div class="card-axis">
-                        <div>
-                            <img class="mt-1" src="{% static 'images/team/brandon.png' %}"
-                                alt="Team member: Brandon-Lea">
-                            <h3 class="title">Brandon-Lea Price</h3>
-                            <i class="fas fa-sync-alt"></i>
-                        </div>
-                    </div>
+              <div class="polariod"
+                data-name="Brandon-Lea Price"
+                data-bio="UK based Full Stack developer, always looking for a challenge and learning new skills everyday.."
+                data-info="Go take a look at my github and then connect on LinkedIn!"
+                data-link1="https://github.com/brandonlea"
+                data-link2="https://www.linkedin.com/in/brandon-lea-price-249129172/"
+                data-img="{% static 'images/team/brandon.png' %}"
+                data-border-color="#fdffb6">
+                <div class="card-axis">
+                  <div>
+                    <img class="mt-1" src="{% static 'images/team/brandon.png' %}" alt="Team member: Brandon-Lea">
+                    <h3 class="title">Brandon-Lea Price</h3>
+                    <i class="fas fa-sync-alt"></i>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="item" style="--position: 4">
+          </div>
+  
+          <!-- Team Member: Ebuka -->
+          <div class="item" style="--position: 4">
             <div class="spacing">
-                <div class="polariod" data-name="Ebuka Martins" data-bio="Irish Based Full Stack Developer and Predictive Analyst." 
-                    data-info="Go take a look at my github and then connect on LinkedIn!" 
-                    data-link1="https://github.com/Ebuka-martins"
-                    data-link2="http://www.linkedin.com/in/ebuka-martins-echesi-msc-b-tech-software-development-a724a86a"
-                    data-img="{% static 'images/team/ebuka.png' %}" data-border-color="#caffbf">
-                    <div class="card-axis">
-                        <div>
-                            <img class="mt-1" src="{% static 'images/team/ebuka.png' %}" alt="Team member: Ebuka">
-                            <h3 class="title">Ebuka Martins </h3>
-                            <i class="fas fa-sync-alt"></i>
-                        </div>
-                    </div>
+              <div class="polariod"
+                data-name="Ebuka Martins"
+                data-bio="Irish Based Full Stack Developer and Predictive Analyst."
+                data-info="Go take a look at my github and then connect on LinkedIn!"
+                data-link1="https://github.com/Ebuka-martins"
+                data-link2="http://www.linkedin.com/in/ebuka-martins-echesi-msc-b-tech-software-development-a724a86a"
+                data-img="{% static 'images/team/ebuka.png' %}"
+                data-border-color="#caffbf">
+                <div class="card-axis">
+                  <div>
+                    <img class="mt-1" src="{% static 'images/team/ebuka.png' %}" alt="Team member: Ebuka">
+                    <h3 class="title">Ebuka Martins</h3>
+                    <i class="fas fa-sync-alt"></i>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="item" style="--position: 3">
+          </div>
+  
+          <!-- Team Member: Kian -->
+          <div class="item" style="--position: 3">
             <div class="spacing">
-                <div class="polariod" data-name="Kian Jenkins" data-bio="Interesting facts."
-                    data-info="Go take a look at my github and then connect on LinkedIn!"
-                    data-link1="https://github.com/Ljkkj7"
-                    data-link2="https://www.linkedin.com/in/kian-jenkins-421425202/"
-                    data-img="{% static 'images/team/kian.png' %}" data-border-color="#9bf6ff">
-                    <div class="card-axis">
-                        <div>
-                            <img class="mt-1" src="{% static 'images/team/kian.png' %}" alt="Team member: Kian">
-                            <h3 class="title">Kian Jenkins</h3>
-                            <i class="fas fa-sync-alt"></i>
-                        </div>
-                    </div>
+              <div class="polariod"
+                data-name="Kian Jenkins"
+                data-bio="Interesting facts."
+                data-info="Go take a look at my github and then connect on LinkedIn!"
+                data-link1="https://github.com/Ljkkj7"
+                data-link2="https://www.linkedin.com/in/kian-jenkins-421425202/"
+                data-img="{% static 'images/team/kian.png' %}"
+                data-border-color="#9bf6ff">
+                <div class="card-axis">
+                  <div>
+                    <img class="mt-1" src="{% static 'images/team/kian.png' %}" alt="Team member: Kian">
+                    <h3 class="title">Kian Jenkins</h3>
+                    <i class="fas fa-sync-alt"></i>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="item" style="--position: 2">
+          </div>
+  
+          <!-- Team Member: Kiree -->
+          <div class="item" style="--position: 2">
             <div class="spacing">
-                <div class="polariod" data-name="Kiree Bellamy"
-                    data-bio="Swedish based, Kiwi coder, This months Scrum master, do my best to support the team so we can make the best product we can."
-                    data-info="Go take a look at my github and then connect on LinkedIn!"
-                    data-link1="https://github.com/Swewi" data-link2="https://www.linkedin.com/in/kireebellamy/"
-                    data-img="{% static 'images/team/kiree.png' %}" data-border-color="#bdb2ff">
-                    <div class="card-axis">
-                        <div>
-                            <img class="mt-1" src="{% static 'images/team/kiree.png' %}" alt="Team member: Kiree">
-                            <h3 class="title">Kiree Bellamy</h3>
-                            <i class="fas fa-sync-alt"></i>
-                        </div>
-                    </div>
+              <div class="polariod"
+                data-name="Kiree Bellamy"
+                data-bio="Swedish based, Kiwi coder, This month's Scrum master, do my best to support the team so we can make the best product we can."
+                data-info="Go take a look at my github and then connect on LinkedIn!"
+                data-link1="https://github.com/Swewi"
+                data-link2="https://www.linkedin.com/in/kireebellamy/"
+                data-img="{% static 'images/team/kiree.png' %}"
+                data-border-color="#bdb2ff">
+                <div class="card-axis">
+                  <div>
+                    <img class="mt-1" src="{% static 'images/team/kiree.png' %}" alt="Team member: Kiree">
+                    <h3 class="title">Kiree Bellamy</h3>
+                    <i class="fas fa-sync-alt"></i>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="item" style="--position: 1">
+          </div>
+  
+          <!-- Team Member: Dimitri -->
+          <div class="item" style="--position: 1">
             <div class="spacing">
-                <div class="polariod" data-name="Dimitri Edel" data-bio="German based backend engineer extraordinaire."
-                    data-info="Go take a look at my github and then connect on LinkedIn!"
-                    data-link1="https://github.com/dimitri-edel"
-                    data-link2="https://www.linkedin.com/in/dimitri-edel-26a5022a9/"
-                    data-img="{% static 'images/team/dimitri.png' %}" data-border-color="#ffc6ff">
-                    <div class="card-axis">
-                        <div>
-                            <img class="mt-1" src="{% static 'images/team/dimitri.png' %}"
-                                alt="Team member: Dimitri">
-                            <h3 class="title">Dimitri Edel</h3>
-                            <i class="fas fa-sync-alt"></i>
-                        </div>
-                    </div>
+              <div class="polariod"
+                data-name="Dimitri Edel"
+                data-bio="German based backend engineer extraordinaire."
+                data-info="Go take a look at my github and then connect on LinkedIn!"
+                data-link1="https://github.com/dimitri-edel"
+                data-link2="https://www.linkedin.com/in/dimitri-edel-26a5022a9/"
+                data-img="{% static 'images/team/dimitri.png' %}"
+                data-border-color="#ffc6ff">
+                <div class="card-axis">
+                  <div>
+                    <img class="mt-1" src="{% static 'images/team/dimitri.png' %}" alt="Team member: Dimitri">
+                    <h3 class="title">Dimitri Edel</h3>
+                    <i class="fas fa-sync-alt"></i>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+  
+        <!-- Centered logo -->
+        <div class="light text-center">
+          <img src="{% static 'images/team-logo.png' %}" alt="team logo" class="rounded-circle team-logo mt-4">
+        </div>
+      </div>
     </div>
-    
-    <!-- Centered logo -->
-    <div class="light">
-        <img src="{% static 'images/team-logo.png' %}" alt="team logo" class="rounded-circle team-logo mt-4">
-    </div>
-</div>
-<div class="details-section data-border" id="details-section">
+  </section>
+  
+  <!-- Outside of styled box for overlay details -->
+  <div class="details-section data-border" id="details-section">
     <button class="close-btn">x</button>
     <h2 id="details-name"></h2>
     <img id="details-img" src="" alt="Team member details">
     <p id="details-bio"></p>
     <p id="details-info"></p>
     <div id="details-links">
-        <a id="link1" class="about-link-icon" href="#" target="_blank"><i class="fab fa-github"></i></a>
-        <a id="link2" class="about-link-icon" href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a id="link1" class="about-link-icon" href="#" target="_blank"><i class="fab fa-github"></i></a>
+      <a id="link2" class="about-link-icon" href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
     </div>
-</div>
+  </div>
+  
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
