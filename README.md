@@ -19,7 +19,7 @@
 * [Credits](#credits)
 
 ## Project Description
-<details><summary>Project Description</summary>
+<details><summary>Details</summary>
 This project is a mock "tech support" web application designed to help family members, especially elderly relatives, with their technical issues. Users can type in their questions, and the application will use AI to generate helpful responses.  The goal is to make technology more accessible and less intimidating for those who may not be as familiar with it.
 
 For example, a user could ask:
@@ -31,16 +31,17 @@ For example, a user could ask:
 </details>
 
 ## Tech Stack
-<details><summary>Tech Stack</summary>
-* **Backend:** Django
-* **Frontend:** HTML, CSS, JavaScript, Bootstrap
-* **AI:** Google Generative Language AI (Model: gemini-1.5-flash-002)
+<details><summary>Details</summary>
+
+*  **Backend:** Django
+*  **Frontend:** HTML, CSS, JavaScript, Bootstrap
+*  **AI:** Google Generative Language AI (Model: gemini-1.5-flash-002)
 
 [Back to Table of Contents](#table-of-contents)
 </details>
 
 ## Features
-<details><summary>Features</summary>
+<details><summary>Details</summary>
 * AI-powered question answering: Users can type in their tech support questions and receive AI-generated responses.
 * User-friendly interface: The application is designed to be simple and easy to use, especially for elderly users.
 * Web-based:  Accessible from any device with a web browser.
@@ -49,7 +50,7 @@ For example, a user could ask:
 </details>
 
 ## How to Use
-<details><summary>How to Use</summary>
+<details><summary>Details</summary>
 1.  **Installation**
     * Clone the repository.
     * Set up a virtual environment (optional but recommended).
@@ -74,7 +75,7 @@ For example, a user could ask:
 
 ## Entity Relationship Diagram
 
-<details><summary>Models</summary>
+<details><summary>Details</summary>
 
 ```mermaid
 erDiagram
@@ -119,7 +120,7 @@ erDiagram
 </details>
 
 ## Manual Testing
-<details><summary>Manual Testing</summary>
+<details><summary>Details</summary>
 
 ### Landing Page (`index.html`)
 
@@ -162,7 +163,7 @@ erDiagram
 
 
 ## Wireframes
-<details><summary>Mobile & Desktop</summary>
+<details><summary>Details</summary>
 
 ![Mobile Wireframe](static/images/wireframes/Mobile.png)*
 ![Desktop Wireframe](static/images/wireframes/Desktop.png)*
@@ -171,18 +172,19 @@ erDiagram
 </details>
 
 ## User Stories
-<details><summary>User Stories</summary>
+<details><summary>Details</summary>
 * As a user, I want to be able to easily input my tech support question.
 * As a user, I want to receive a helpful and accurate response to my question.
 * As a user, I want the application to be easy to use, even if I am not very tech-savvy.
+* As a user, I want to be able to store useful information
 * As a user, I want the application to be accessible from any device with a web browser.
-* As a developer, I want to use a reliable AI model to generate accurate responses.
+
 
 [Back to Table of Contents](#table-of-contents)
 </details>
 
 ## Future Enhancements
-<details><summary>Suggestions on how this app can be improved in the future</summary>
+<details><summary>Details</summary>
 * Improved AI response accuracy and relevance, by using AI Agents in tandem with an LLM like Gemini, Chat-GPT, etc. This would make creating better designed responses pssible. For example, images, audio and video files could be embedded inside the AI responses
 * User profiles, containing information about technical skills, enable AI responses to be tailored to match the user's understanding.
 * Feedback mechanism for users to rate the helpfulness of the responses.
@@ -193,6 +195,6 @@ erDiagram
 </details>
 
 ## Credits
-<details><summary>Credits</summary>
+<details><summary>Details</summary>
 * This project was created by Team5
 </details>
