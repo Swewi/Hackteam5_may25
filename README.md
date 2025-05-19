@@ -26,7 +26,8 @@ For example, a user could ask:
 
 * "How do I reset my WiFi?"
 * "How do I download Facebook?"
-* [Back to Table of Contents](#table-of-contents)
+
+[Back to Table of Contents](#table-of-contents)
 </details>
 
 ## Tech Stack
@@ -34,7 +35,8 @@ For example, a user could ask:
 * **Backend:** Django
 * **Frontend:** HTML, CSS, JavaScript, Bootstrap
 * **AI:** Google Generative Language AI (Model: gemini-1.5-flash-002)
-* [Back to Table of Contents](#table-of-contents)
+
+[Back to Table of Contents](#table-of-contents)
 </details>
 
 ## Features
@@ -42,7 +44,8 @@ For example, a user could ask:
 * AI-powered question answering: Users can type in their tech support questions and receive AI-generated responses.
 * User-friendly interface: The application is designed to be simple and easy to use, especially for elderly users.
 * Web-based:  Accessible from any device with a web browser.
-* [Back to Table of Contents](#table-of-contents)
+
+[Back to Table of Contents](#table-of-contents)
 </details>
 
 ## How to Use
@@ -65,7 +68,8 @@ For example, a user could ask:
 3.  **Usage**
     * Once the application is running, users can type their tech support questions into the input field on the main page.
     * The AI-generated response will be displayed on the page.
-* [Back to Table of Contents](#table-of-contents)
+
+[Back to Table of Contents](#table-of-contents)
 </details>
 
 ## Entity Relationship Diagram
@@ -110,7 +114,8 @@ erDiagram
 - Each Interaction belongs to a User.
 - Each Note belongs to a User.
 
-* [Back to Table of Contents](#table-of-contents)
+
+[Back to Table of Contents](#table-of-contents)
 </details>
 
 ## Manual Testing
@@ -161,7 +166,8 @@ erDiagram
 * *Mobile & Desktop:*
     * *![Mobile Wireframe](static/images/wireframes/Mobile.png)*
     * *![Desktop Wireframe](static/images/wireframes/Desktop.png)*
-* [Back to Table of Contents](#table-of-contents)
+
+[Back to Table of Contents](#table-of-contents)
 </details>
 
 ## User Stories
@@ -171,7 +177,8 @@ erDiagram
 * As a user, I want the application to be easy to use, even if I am not very tech-savvy.
 * As a user, I want the application to be accessible from any device with a web browser.
 * As a developer, I want to use a reliable AI model to generate accurate responses.
-* [Back to Table of Contents](#table-of-contents)
+
+[Back to Table of Contents](#table-of-contents)
 </details>
 
 ## Future Enhancements
@@ -182,7 +189,8 @@ erDiagram
 * User accounts and history.
 * Feedback mechanism for users to rate the helpfulness of the responses.
 * Multi-language support.
-* [Back to Table of Contents](#table-of-contents)
+
+[Back to Table of Contents](#table-of-contents)
 </details>
 
 ## Credits
