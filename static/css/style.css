@@ -35,6 +35,11 @@ main {
     min-height: 100vh;
 }
 
+.nav-item:hover,
+.footer-links:hover {
+    font-weight: bold;
+}
+
 /* Footer */
 footer {
     background-color: var(--background);
@@ -69,11 +74,6 @@ footer a {
 }
 
 @media screen and (min-width: 992px) {
-
-    /* footer {
-        height: 6rem;
-    } */
-
     .footer-text {
         height: 2.5rem;
         margin: 1rem;
