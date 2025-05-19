@@ -4,287 +4,289 @@
 {% block content %}
 <div class="container-md py-4">
     <div class="row align-items-center padding-1 g-0">
-      <!-- Image column -->
-      <div class="col-md-3 text-end px-0">
-        <img src="{% static 'images/robot-head.png' %}" class="img-fluid w-50 mirror" alt="Robot" />
-      </div>
-  
-      <!-- Text column -->
-      <div class="col-md-5 p-0">
-        <div class="text-background rounded-5 padding-2">
-          <h3 class="text-center">Welcome to the Assistant Page</h3>
-          <p class="text-center">Ask a question to get help.</p>
+        <!-- Image column -->
+        <div class="col-md-3 text-end px-0">
+            <img src="{% static 'images/robot-head.png' %}" class="img-fluid w-50 mirror" alt="Robot" />
         </div>
-      </div>
+
+        <!-- Text column -->
+        <div class="col-md-5 p-0">
+            <div class="text-background rounded-5 padding-2">
+                <h3 class="text-center">Welcome to the UncleTech</h3>
+                <p class="text-center">Ask a question to get help.</p>
+            </div>
+        </div>
     </div>
-  
+
     <!-- Chatbot -->
     <div class="row mt-4">
-      <div class="col-md-12">
-        <div class="text-background rounded-5 padding-2 text-start">     
-            {% for interaction in history %}
-            <div class="interaction">
-              <div class="you-label text-end">You</div>
-              <div class="user-question chat-style text-end">{{ interaction.question }}</div>
-              <div class="assistant-label">uncle Tech</div>
-              <div class="gemini-response">{{ interaction.answer|linebreaksbr }}</div>
-              <small class="text-muted">{{ interaction.timestamp }}</small>
-            </div>
-            {% empty %}
-            <p>No previous interactions.</p>
-            {% endfor %}
-  
-            <!-- Input + Buttons Section -->
-            <div id="user-prompt" class="mt-4">
-              <div class="d-flex flex-column flex-md-row align-items-stretch gap-2">
-                <!-- Input field -->
-                <input type="text" id="user_input" placeholder="Ask Assistant a question..."
-                  class="form-control flex-grow-1" style="min-width: 0;" autofocus>
-  
-                <!-- Buttons (centered on small screens) -->
-                <div class="d-flex justify-content-center justify-content-md-start flex-wrap flex-md-nowrap gap-2">
-                    <div class="col-4 col-md-auto p-0">
-                      <button id="send_button" class="btn w-100 send-button">
-                        <i class="fa fa-paper-plane"></i>
-                      </button>
-                    </div>
-                    <div class="col-4 col-md-auto p-0">
-                      <button id="save_conversation" class="btn w-100">
-                        <i class="fas fa-save"></i>
-                      </button>
-                    </div>
-                    <div class="col-4 col-md-auto p-0">
-                      <button id="clear_chat" class="btn w-100">
-                        <i class="fas fa-redo"></i>
-                      </button>
-                    </div>
-                  </div>
-  
-            <!-- Save Conversation Modal -->
-            <div id="saveModal" class="modal fade" tabindex="-1">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content p-4">
-                  <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold">Save Conversation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                      id="closeModal"></button>
-                  </div>
-                  <div class="modal-body">
-                    <label for="title" class="form-label">Title:</label>
-                    <input type="text" id="title" name="title" class="form-control mb-2">
-                    <div id="validation-message" class="validation-message"></div>
-                  </div>
-                  <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-secondary" id="cancelButton" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-confirm" id="okButton">OK</button>
-                  </div>
+        <div class="col-md-12">
+            <div class="text-background rounded-5 padding-2 text-start">
+                {% for interaction in history %}
+                <div class="interaction">
+                    <div class="you-label text-end">You</div>
+                    <div class="user-question chat-style text-end">{{ interaction.question }}</div>
+                    <div class="assistant-label">uncle Tech</div>
+                    <div class="gemini-response">{{ interaction.answer|linebreaksbr }}</div>
+                    <small class="text-muted">{{ interaction.timestamp }}</small>
                 </div>
-              </div>
-            </div>
-        </div> <!-- .text-background -->
-      </div> <!-- .col -->
-    </div> <!-- .row -->
-  </div> <!-- .container -->
+                {% empty %}
+                <p>No previous interactions.</p>
+                {% endfor %}
 
-<!-- Scripts -->
-<script>
-    const userInput = document.getElementById('user_input');
-    const sendButton = document.getElementById('send_button');
+                <!-- Input + Buttons Section -->
+                <div id="user-prompt" class="mt-4">
+                    <div class="d-flex flex-column flex-md-row align-items-stretch gap-2">
+                        <!-- Input field -->
+                        <input type="text" id="user_input" placeholder="Ask Assistant a question..."
+                            class="form-control flex-grow-1" style="min-width: 0;" autofocus>
 
-    sendButton.addEventListener('click', () => {
-        const question = userInput.value;
-        if (!question.trim()) {
-            alert('Please enter a question');
-            return;
-        }
+                        <!-- Buttons (centered on small screens) -->
+                        <div
+                            class="d-flex justify-content-center justify-content-md-start flex-wrap flex-md-nowrap gap-2">
+                            <div class="col-4 col-md-auto p-0">
+                                <button id="send_button" class="btn w-100 send-button">
+                                    <i class="fa fa-paper-plane"></i>
+                                </button>
+                            </div>
+                            <div class="col-4 col-md-auto p-0">
+                                <button id="save_conversation" class="btn w-100">
+                                    <i class="fas fa-save"></i>
+                                </button>
+                            </div>
+                            <div class="col-4 col-md-auto p-0">
+                                <button id="clear_chat" class="btn w-100">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                            </div>
+                        </div>
 
-        // replace contents of user-prompt with a spinner icon
-        const userPrompt = document.getElementById('user-prompt');
-        const originalPromptHTML = userPrompt.innerHTML;
-        userPrompt.innerHTML = '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+                        <!-- Save Conversation Modal -->
+                        <div id="saveModal" class="modal fade" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content p-4">
+                                    <div class="modal-header border-0 pb-0">
+                                        <h5 class="modal-title fw-bold">Save Conversation</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close" id="closeModal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="title" class="form-label">Title:</label>
+                                        <input type="text" id="title" name="title" class="form-control mb-2">
+                                        <div id="validation-message" class="validation-message"></div>
+                                    </div>
+                                    <div class="modal-footer border-0">
+                                        <button type="button" class="btn btn-secondary" id="cancelButton"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-confirm" id="okButton">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- .text-background -->
+                </div> <!-- .col -->
+            </div> <!-- .row -->
+        </div> <!-- .container -->
 
-        fetch('/assistant/', {  //  Use the correct URL for your view
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-CSRFToken': getCookie('csrftoken')
-            },
-            body: `question=${encodeURIComponent(question)}`
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+        <!-- Scripts -->
+        <script>
+            const userInput = document.getElementById('user_input');
+            const sendButton = document.getElementById('send_button');
+
+            sendButton.addEventListener('click', () => {
+                const question = userInput.value;
+                if (!question.trim()) {
+                    alert('Please enter a question');
+                    return;
                 }
-                return response.json();
-            })
-            .then(data => {
-                // Refresh the page
-                location.reload();                
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while processing your question.');
-                // Restore the original input prompt
-                userPrompt.innerHTML = originalPromptHTML;
+
+                // replace contents of user-prompt with a spinner icon
+                const userPrompt = document.getElementById('user-prompt');
+                const originalPromptHTML = userPrompt.innerHTML;
+                userPrompt.innerHTML = '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+
+                fetch('/assistant/', {  //  Use the correct URL for your view
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: `question=${encodeURIComponent(question)}`
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Refresh the page
+                        location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred while processing your question.');
+                        // Restore the original input prompt
+                        userPrompt.innerHTML = originalPromptHTML;
+                    });
             });
-    });
 
-    userInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            sendButton.click();
-        }
-    });
-
-    const saveButton = document.getElementById('save_conversation');
-    const modal = document.getElementById('saveModal');
-    const closeModal = document.getElementById('closeModal');
-    const cancelButton = document.getElementById('cancelButton');
-    const okButton = document.getElementById('okButton');
-    var saveModalElement = null;
-
-    document.addEventListener('DOMContentLoaded', function () {
-        // ...other code...
-
-        // Initialize Bootstrap modal
-        saveModalElement = new bootstrap.Modal(modal);
-
-        saveButton.addEventListener('click', () => {
-            // Clear any previous validation messages
-            document.getElementById('validation-message').innerHTML = '';
-            // Clear the title field
-            document.getElementById('title').value = '';
-            // Show the modal
-            saveModalElement.show();
-        });
-
-        closeModal.addEventListener('click', () => {
-            saveModalElement.hide();
-        });
-
-        cancelButton.addEventListener('click', () => {
-            saveModalElement.hide();
-        });
-    });
-
-    okButton.addEventListener('click', () => {
-        const titleField = document.getElementById('title');
-        const validationMessage = document.getElementById('validation-message');
-
-        if (titleField.value.trim() === '') {
-            validationMessage.innerHTML = 'Title cannot be empty!';
-            return;
-        }
-
-        // Disable the OK button and show loading state
-        okButton.disabled = true;
-        const originalButtonText = okButton.innerHTML;
-        okButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Saving...';
-
-        // Fetch request to save the conversation
-        fetch('/assistant/save-conversation/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-CSRFToken': getCookie('csrftoken')
-            },
-            body: `title=${encodeURIComponent(titleField.value)}`
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+            userInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    sendButton.click();
                 }
-                return response.json();
-            })
-            .then(data => {
-                // Hide the modal first
-                saveModalElement.hide();
+            });
 
-                // If data contains status=='success', show success message and redirect to notes page
-                if (data.status === 'success') {
-                    showMessage('Conversation saved successfully!');
+            const saveButton = document.getElementById('save_conversation');
+            const modal = document.getElementById('saveModal');
+            const closeModal = document.getElementById('closeModal');
+            const cancelButton = document.getElementById('cancelButton');
+            const okButton = document.getElementById('okButton');
+            var saveModalElement = null;
 
-                    // Optional: Redirect to the notes page after a short delay
+            document.addEventListener('DOMContentLoaded', function () {
+                // ...other code...
+
+                // Initialize Bootstrap modal
+                saveModalElement = new bootstrap.Modal(modal);
+
+                saveButton.addEventListener('click', () => {
+                    // Clear any previous validation messages
+                    document.getElementById('validation-message').innerHTML = '';
+                    // Clear the title field
+                    document.getElementById('title').value = '';
+                    // Show the modal
+                    saveModalElement.show();
+                });
+
+                closeModal.addEventListener('click', () => {
+                    saveModalElement.hide();
+                });
+
+                cancelButton.addEventListener('click', () => {
+                    saveModalElement.hide();
+                });
+            });
+
+            okButton.addEventListener('click', () => {
+                const titleField = document.getElementById('title');
+                const validationMessage = document.getElementById('validation-message');
+
+                if (titleField.value.trim() === '') {
+                    validationMessage.innerHTML = 'Title cannot be empty!';
+                    return;
+                }
+
+                // Disable the OK button and show loading state
+                okButton.disabled = true;
+                const originalButtonText = okButton.innerHTML;
+                okButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Saving...';
+
+                // Fetch request to save the conversation
+                fetch('/assistant/save-conversation/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: `title=${encodeURIComponent(titleField.value)}`
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Hide the modal first
+                        saveModalElement.hide();
+
+                        // If data contains status=='success', show success message and redirect to notes page
+                        if (data.status === 'success') {
+                            showMessage('Conversation saved successfully!');
+
+                            // Optional: Redirect to the notes page after a short delay
+                            setTimeout(() => {
+                                window.location.href = '/notes/';
+                            }, 1500);
+                        } else {
+                            alert('Failed to save conversation: ' + (data.message || 'Unknown error'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred while saving the conversation: ' + error.message);
+                    })
+                    .finally(() => {
+                        // Reset button state
+                        okButton.disabled = false;
+                        okButton.innerHTML = originalButtonText;
+                    });
+            });
+
+            // Clear validation message when user starts typing in the title input
+            const titleInput = document.getElementById('title');
+            const validationMessage = document.getElementById('validation-message');
+            titleInput.addEventListener('input', function () {
+                if (validationMessage.innerHTML !== '') {
+                    validationMessage.innerHTML = '';
+                }
+            });
+
+            // Function for inserting a div with a message at the top of the page
+            // The div gets removed after 5 seconds
+            function showMessage(message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.textContent = message;
+                messageDiv.className = 'alert alert-success notification-message position-fixed top-0 start-50 translate-middle-x mt-4';
+                document.body.appendChild(messageDiv);
+
+                setTimeout(() => {
+                    messageDiv.classList.add('fade-out');
                     setTimeout(() => {
-                        window.location.href = '/notes/';
-                    }, 1500);
-                } else {
-                    alert('Failed to save conversation: ' + (data.message || 'Unknown error'));
+                        if (document.body.contains(messageDiv)) {
+                            document.body.removeChild(messageDiv);
+                        }
+                    }, 500);
+                }, 4500);
+            }
+
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        let cookie = cookies[i].trim();
+                        if (cookie.startsWith(name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while saving the conversation: ' + error.message);
-            })
-            .finally(() => {
-                // Reset button state
-                okButton.disabled = false;
-                okButton.innerHTML = originalButtonText;
+                return cookieValue;
+            }
+
+            const clearChatButton = document.getElementById('clear_chat');
+            clearChatButton.addEventListener('click', function () {
+                fetch('/assistant/clear-chat-history/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken')
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            // reload the page to show the cleared chat history
+                            window.location.reload();
+                        } else {
+                            alert('Something went wrong while clearing the chat history.');
+                        }
+                    })
+                    .catch(() => {
+                        alert('Something went wrong while clearing the chat history.');
+                    });
             });
-    });
-
-    // Clear validation message when user starts typing in the title input
-    const titleInput = document.getElementById('title');
-    const validationMessage = document.getElementById('validation-message');
-    titleInput.addEventListener('input', function () {
-        if (validationMessage.innerHTML !== '') {
-            validationMessage.innerHTML = '';
-        }
-    });
-
-    // Function for inserting a div with a message at the top of the page
-    // The div gets removed after 5 seconds
-    function showMessage(message) {
-        const messageDiv = document.createElement('div');
-        messageDiv.textContent = message;
-        messageDiv.className = 'alert alert-success notification-message position-fixed top-0 start-50 translate-middle-x mt-4';
-        document.body.appendChild(messageDiv);
-
-        setTimeout(() => {
-            messageDiv.classList.add('fade-out');
-            setTimeout(() => {
-                if (document.body.contains(messageDiv)) {
-                    document.body.removeChild(messageDiv);
-                }
-            }, 500);
-        }, 4500);
-    }
-
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                let cookie = cookies[i].trim();
-                if (cookie.startsWith(name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-
-    const clearChatButton = document.getElementById('clear_chat');
-    clearChatButton.addEventListener('click', function () {
-        fetch('/assistant/clear-chat-history/', {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': getCookie('csrftoken')
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                // reload the page to show the cleared chat history
-                window.location.reload();                
-            } else {
-                alert('Something went wrong while clearing the chat history.');
-            }
-        })
-        .catch(() => {
-            alert('Something went wrong while clearing the chat history.');
-        });
-    });
-</script>
-{% csrf_token %}
-{% endblock %}
+        </script>
+        {% csrf_token %}
+        {% endblock %}
