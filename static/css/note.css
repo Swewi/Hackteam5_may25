@@ -4,14 +4,6 @@
     margin-top: 20px;
 }
 
-/* Interaction blocks */
-/* .interaction {
-    display: block;
-    text-align: left;
-    margin: 10px;
-    padding: 10px;
-    } */
-
 .user-question {
     font-weight: bold;
     color: var(--font-color);
