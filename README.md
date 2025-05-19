@@ -182,13 +182,12 @@ erDiagram
 </details>
 
 ## Future Enhancements
-<details><summary>Future Enhancements</summary>
-* Improved AI response accuracy and relevance.
-* Support for more complex technical issues.
-* Multimedia support (e.g., images, videos) in responses.
-* User accounts and history.
+<details><summary>Suggestions on how this app can be improved in the future</summary>
+* Improved AI response accuracy and relevance, by using AI Agents in tandem with an LLM like Gemini, Chat-GPT, etc. This would make creating better designed responses pssible. For example, images, audio and video files could be embedded inside the AI responses
+* User profiles, containing information about technical skills, enable AI responses to be tailored to match the user's understanding.
 * Feedback mechanism for users to rate the helpfulness of the responses.
 * Multi-language support.
+* Use of external authenticaion services such as Google OAuth2, GitHub,Facebook, Twitter, Apple, Microsoft, etc. That way users would not have to sign up using a new set of credentials
 
 [Back to Table of Contents](#table-of-contents)
 </details>
