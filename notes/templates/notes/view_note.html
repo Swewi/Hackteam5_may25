@@ -1,22 +1,39 @@
 {% extends 'base.html' %}
 {% block title %}Notes{% endblock %}
 {% block content %}
-<div class="content-container">
-    <a href="/notes/" class="btn btn-secondary back-button ms-5">
-        <i class="fas fa-arrow-left"></i> Back to Notes
-    </a>
-    <h2 class="text-center">Note Details</h2>
-    <h1 class="text-center">{{ note.title }}</h1>
-    {% for interaction in interactions %}
-    <div class="interaction">
-        <div class="you-label">You:</div>
-        <div class="user-question">{{ interaction.question|linebreaksbr }}</div>
-        <div class="assistant-label">Assistant:</div>
-        <div class="gemini-response">{{ interaction.answer|linebreaksbr }}</div>
+<div class="container-md py-4">
+    <div class="row align-items-center padding-1 g-0">
+<div class="row mt-4">
+    <div class="col-md-12">
+      <div class="text-background rounded-5 padding-2 text-start">
+        <div class="content-container">
+          <!-- Back button aligned like the chatbot buttons -->
+          <div class="d-flex justify-content-start mb-3">
+            <a href="/notes/" class="btn btn-secondary back-button">
+              <i class="fas fa-arrow-left"></i> Back to Notes
+            </a>
+          </div>
+  
+          <!-- Titles centered -->
+          <h3 class="text-center">Note Details</h3>
+          <h2 class="text-center">{{ note.title }}</h2>
+  
+          <!-- Interaction loop -->
+          {% for interaction in interactions %}
+          <div class="interaction mt-4">
+            <div class="you-label">You:</div>
+            <div class="user-question chat-style">{{ interaction.question|linebreaksbr }}</div>
+            <div class="assistant-label">uncle Tech:</div>
+            <div class="gemini-response">{{ interaction.answer|linebreaksbr }}</div>
+          </div>
+          {% empty %}
+          <p class="text-center">No interactions available.</p>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-    {% empty %}
-    <p>No interactions available.</p>
-    {% endfor %}
+  </div>
+</div>
 </div>
 {% csrf_token %}
 {% endblock %}

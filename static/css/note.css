@@ -5,12 +5,12 @@
 }
 
 /* Interaction blocks */
-.interaction {
+/* .interaction {
     display: block;
     text-align: left;
     margin: 10px;
     padding: 10px;
-    }
+    } */
 
 .user-question {
     font-weight: bold;
@@ -146,11 +146,6 @@
     color: #da2552;
 }
 
-/* Content container spacing */
-.content-container {
-    margin-top: 60px;
-}
-
 /* Filter form */
 .filter-form {
     margin-bottom: 20px;
@@ -182,7 +177,8 @@
 .btn-filter:focus,
 .btn-confirm:hover,
 .back-button:hover,
-.back-button:focus {
+.back-button:focus,
+.btn-custom-dark:hover {
     background-color: var(--btn-hover);
     color: var(--font-color);
 }

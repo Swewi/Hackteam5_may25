@@ -6,8 +6,8 @@
 }
 
 .btn-custom-dark {
-    background-color: var(--btn-light-color);
-    color: var(--font-text);
+    background-color: var(--btn-dark-color);
+    color: var(--footer-text);
 }
 
 /* Signup link */
@@ -38,8 +38,8 @@
 }
 
 .btn-custom-dark:hover, .btn-custom-dark:focus {
-    background-color: var(--btn-dark-color);
-    color: var(--footer-text);
+    background-color: var(--btn-light-color);
+    color: var(--font-color);
 }
 
 /* Media queries */
