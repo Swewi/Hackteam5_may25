@@ -6,8 +6,8 @@
         <div class="modal-content p-4 text-center">
             <p>Do you really want to delete the note?</p>
             <div class="mt-4">
-                <button id="modalYesBtn" class="btn btn-light me-3">Yes</button>
-                <button id="modalNoBtn" class="btn btn-dark">No</button>
+                <button id="modalYesBtn" class="btn btn-light me-3" aria-label="delete the note">Yes</button>
+                <button id="modalNoBtn" class="btn btn-dark" aria-label="Do not delete the note">No</button>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
                 <form method="get" class="filter-form">
                     <input type="text" name="q" placeholder="Filter notes by title, question, or answer..." 
                         value="{{ query|default:'' }}" class="form-control filter-input d-inline-block">
-                    <button type="submit" class="btn btn-light">Filter</button>
+                    <button type="submit" class="btn btn-light" aria-label="search the notes">Filter</button>
                 </form>
 
                 <div class="row justify-content-center mt-4 gap-4">
