@@ -85,7 +85,7 @@ In order to receive the aswers from the AI in a specific format we attached a pr
 
 [Back to Table of Contents](#table-of-contents)
 
-<details><summary>Details</summary>
+<details><summary>More detailed step by step intructions</summary>
 
 ### Setting up Google's Gemini API with Django
 
