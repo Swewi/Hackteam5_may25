@@ -148,33 +148,12 @@
     width: 300px;
 }
 
-.btn-confirm {
-    background-color: var(--btn-light-color);
-    color: var(--font-color);
-}
-
 /* Back button */
 .back-button {
     margin-bottom: 1rem;
 }
 
 /* Custom button */
-.btn-filter {
-    background-color: var(--btn-light-color);
-    color: var(--font-color);
-}
-
-/* Hover and Focus Effect */
-.btn-filter:hover,
-.btn-filter:focus,
-.btn-confirm:hover,
-.back-button:hover,
-.back-button:focus,
-.btn-custom-dark:hover {
-    background-color: var(--btn-hover);
-    color: var(--font-color);
-}
-
 .back-button {
     background-color: var(--btn-dark-color);
     text-decoration: none;
